@@ -506,5 +506,32 @@
             }
         });
     </script>
+    /* Ice frost look for sidebar cards */
+        .frost-card {
+            position: relative;
+            overflow: visible !important; /* Takki barf card ke thoda upar-bahr latak sake */
+        }
+        
+        /* Yeh lagayega proper jami hui barf ka design 24/7 support par */
+        .frost-card::after {
+            content: "";
+            position: absolute;
+            top: -12px; /* Card ke upar border par float karega */
+            right: 15px;
+            width: 75px;
+            height: 60px;
+            background: linear-gradient(180deg, rgba(224, 242, 254, 0.9) 0%, rgba(186, 230, 253, 0.8) 30%, rgba(56, 189, 248, 0) 100%);
+            /* Masking se humne theek waisa hi barf ka tikona cutout banaya hai jaisa image me hai */
+            clip-path: polygon(
+                0% 20%, 15% 22%, 18% 50%, 22% 21%, 35% 23%, 
+                40% 70%, 46% 22%, 60% 24%, 68% 95%, 74% 23%, 
+                88% 21%, 92% 45%, 100% 20%, 100% 0%, 0% 0%
+            );
+            filter: drop-shadow(0px 4px 8px rgba(37, 99, 235, 0.5)) blur(0.3px);
+            border-radius: 4px 4px 0 0;
+            z-index: 30;
+            pointer-events: none;
+        }
+</script>
 </body>
 </html>
