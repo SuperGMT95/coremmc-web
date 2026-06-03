@@ -344,5 +344,167 @@
             });
         });
     </script>
+    <!-- ================================================================= -->
+    <!-- DO NOT TOUCH ABOVE: PASTE THIS PART AT THE BOTTOM OF YOUR CODE   -->
+    <!-- ================================================================= -->
+
+    <!-- 1. Snowfall Particles Container Layer -->
+    <div id="snow-container" class="fixed inset-0 pointer-events-none z-40 overflow-hidden"></div>
+
+    <!-- 2. CSS Styles for Snow and Text Glow Animations -->
+    <style>
+        /* Snow particle styling */
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            pointer-events: none;
+            animation: fall linear infinite;
+            opacity: 0.8;
+            z-index: 40;
+        }
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(105vh) rotate(360deg);
+                opacity: 0.1;
+            }
+        }
+
+        /* Container to handle height of the text change block */
+        .animated-text-container {
+            display: inline-block;
+            position: relative;
+            vertical-align: bottom;
+            overflow: hidden;
+            height: 1.2em;
+        }
+
+        /* Blue Text Entry Animation with Cyber Glow */
+        .text-animate {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(20px);
+            filter: blur(5px);
+            animation: textEntrance 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            text-shadow: 0 0 20px rgba(37, 99, 235, 0.6), 0 0 40px rgba(37, 99, 235, 0.3);
+        }
+
+        @keyframes textEntrance {
+            0% {
+                opacity: 0;
+                transform: translateY(25px);
+                filter: blur(5px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+                filter: blur(0px);
+            }
+        }
+
+        /* Ice frost look for sidebar cards */
+        .frost-card {
+            position: relative;
+            overflow: hidden;
+        }
+        .frost-card::after {
+            content: "❄️";
+            position: absolute;
+            top: -2px;
+            right: 8px;
+            font-size: 1.2rem;
+            opacity: 0.3;
+            filter: drop-shadow(0 0 4px #2563eb);
+            transform: rotate(15deg);
+        }
+    </style>
+
+    <!-- 3. Core Engine Script for Animations -->
+    <script>
+        // Hosting List containing your specific services
+        const hostingServices = [
+            "Minecraft Hosting",
+            "VPS Hosting",
+            "CS:GO Hosting",
+            "Discord Bot Hosting",
+            "Web Hosting"
+        ];
+        let serviceIdx = 0;
+        const mainTextHeading = document.getElementById("dynamic-game");
+
+        // Function to cycle text with high-end animations
+        function triggerTextRotation() {
+            if(!mainTextHeading) return;
+
+            // Step A: Reset and clear old animation properties
+            mainTextHeading.style.animation = 'none';
+            mainTextHeading.offsetHeight; // Forces DOM browser update instantly
+            
+            // Step B: Set the target service title text
+            serviceIdx = (serviceIdx + 1) % hostingServices.length;
+            mainTextHeading.textContent = hostingServices[serviceIdx];
+            
+            // Step C: Attach modern animation engine classes directly
+            mainTextHeading.style.animation = 'textEntrance 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards';
+        }
+
+        // Run text changer loop every 3.5 seconds automatically
+        setInterval(triggerTextRotation, 3500);
+
+        // Snow falling engine script logic
+        function generateLiveSnowflake() {
+            const container = document.getElementById('snow-container');
+            if (!container) return;
+
+            const flakeItem = document.createElement('div');
+            flakeItem.classList.add('snowflake');
+            
+            const snowShapes = ['❄', '•', '✧'];
+            flakeItem.innerHTML = snowShapes[Math.floor(Math.random() * snowShapes.length)];
+            
+            const startPositionX = Math.random() * window.innerWidth;
+            const sizeScale = (Math.random() * 12) + 6; 
+            const speedDuration = (Math.random() * 6) + 5; 
+            const layerOpacity = Math.random() * 0.5 + 0.4;
+            
+            flakeItem.style.left = `${startPositionX}px`;
+            flakeItem.style.fontSize = `${sizeScale}px`;
+            flakeItem.style.animationDuration = `${speedDuration}s`;
+            flakeItem.style.opacity = layerOpacity;
+            
+            container.appendChild(flakeItem);
+            
+            setTimeout(() => { flakeItem.remove(); }, speedDuration * 1000);
+        }
+
+        // Fire snowfall loop ticks
+        setInterval(generateLiveSnowflake, 180);
+
+        // Initialize frost styling on your panel components seamlessly
+        document.addEventListener("DOMContentLoaded", () => {
+            const panels = document.querySelectorAll('#features-panel > div, .lg\\:col-span-5 > div');
+            panels.forEach(panel => {
+                panel.classList.add('frost-card');
+                panel.style.backdropFilter = "blur(6px)";
+                panel.style.borderTop = "1px solid rgba(147, 197, 253, 0.25)";
+            });
+            
+            // Wrap the target text in container wrapper for performance safety
+            if(mainTextHeading && !mainTextHeading.parentElement.classList.contains('animated-text-container')) {
+                const parent = mainTextHeading.parentElement;
+                const wrapper = document.createElement('span');
+                wrapper.classList.add('animated-text-container');
+                parent.replaceChild(wrapper, mainTextHeading);
+                wrapper.appendChild(mainTextHeading);
+                mainTextHeading.classList.add('text-animate');
+                mainTextHeading.textContent = hostingServices[0];
+            }
+        });
+    </script>
 </body>
 </html>
