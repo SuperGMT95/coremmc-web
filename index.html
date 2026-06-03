@@ -500,5 +500,152 @@
             }
         });
     </script>
+    <!-- ================================================================= -->
+    <!-- CHOP & PASTE THIS AT THE VERY BOTTOM OF YOUR FILE ABOVE </body>  -->
+    <!-- ================================================================= -->
+
+    <!-- Snow Layer Background Container -->
+    <div id="snow-container" class="fixed inset-0 pointer-events-none z-40 overflow-hidden"></div>
+
+    <style>
+        /* ❄️ Real Icicles Styling (Latkati hui Barf) */
+        .frost-card {
+            position: relative;
+            overflow: visible !important; /* Isse barf card ke upar border se thoda bahr latkegi */
+        }
+
+        /* Purane emoji wale element ko hide karne ke liye safety padding aur style */
+        .frost-card::before {
+            display: none !important; /* Agar pehle se koi snowflake icon h use hatane k liye */
+        }
+
+        /* 🎨 Asli Latkati hui Barf ka SVG Path Mask Design */
+        .frost-card::after {
+            content: "";
+            position: absolute;
+            top: -10px; /* Card ki top border ke upar overlap hoga */
+            right: 15px; /* Right side me chipkega */
+            width: 85px; /* Barf ki chaudai */
+            height: 65px; /* Barf ki lambai neeche ki taraf */
+            background: linear-gradient(180deg, 
+                rgba(255, 255, 255, 0.95) 0%, 
+                rgba(207, 240, 255, 0.9) 25%, 
+                rgba(14, 165, 233, 0.7) 65%, 
+                rgba(14, 165, 233, 0) 100%
+            );
+            /* Aapki photo (Screenshot 2026-06-03 131859.png) jaise 3 teekhe latakte hue tinke (icicles) */
+            clip-path: polygon(
+                0% 15%, 12% 16%, 
+                15% 55%, 20% 58%, 24% 17%, /* Pehla latakta hua barf ka tinka */
+                40% 19%, 
+                44% 72%, 48% 75%, 52% 18%, /* Doosra sabse lamba tinka center me */
+                68% 18%, 
+                72% 92%, 76% 95%, 80% 17%, /* Teesra sabse sharp latakta hua tinka */
+                90% 16%, 100% 15%, 
+                100% 0%, 0% 0%
+            );
+            filter: drop-shadow(0px 4px 8px rgba(14, 165, 233, 0.5));
+            z-index: 50;
+            pointer-events: none;
+        }
+
+        /* 🚀 Dynamic Glow Text CSS Engine */
+        .animated-text-container {
+            display: inline-block;
+            position: relative;
+            vertical-align: bottom;
+            overflow: hidden;
+            height: 1.2em;
+        }
+        .text-animate {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(20px);
+            filter: blur(5px);
+            animation: textEntrance 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            text-shadow: 0 0 20px rgba(37, 99, 235, 0.6), 0 0 40px rgba(37, 99, 235, 0.3);
+        }
+        @keyframes textEntrance {
+            0% { opacity: 0; transform: translateY(25px); filter: blur(5px); }
+            100% { opacity: 1; transform: translateY(0); filter: blur(0px); }
+        }
+
+        /* Falling snowflakes styling */
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            pointer-events: none;
+            animation: fall linear infinite;
+            opacity: 0.8;
+            z-index: 40;
+        }
+        @keyframes fall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(105vh) rotate(360deg); opacity: 0.1; }
+        }
+    </style>
+
+    <script>
+        // Automatic Text Rotation Engine
+        const hostingServicesList = [
+            "Minecraft Hosting",
+            "VPS Hosting",
+            "Discord Bot Hosting",
+            "Web Hosting"
+        ];
+        let currentSvcIdx = 0;
+        const dynamicTextNode = document.getElementById("dynamic-game");
+
+        function handleServiceRotation() {
+            if(!dynamicTextNode) return;
+            dynamicTextNode.style.animation = 'none';
+            dynamicTextNode.offsetHeight; // Reflow
+            currentSvcIdx = (currentSvcIdx + 1) % hostingServicesList.length;
+            dynamicTextNode.textContent = hostingServicesList[currentSvcIdx];
+            dynamicTextNode.style.animation = 'textEntrance 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards';
+        }
+        setInterval(handleServiceRotation, 3500);
+
+        // Snow Particles Trigger
+        function triggerSnowflake() {
+            const container = document.getElementById('snow-container');
+            if (!container) return;
+            const flake = document.createElement('div');
+            flake.classList.add('snowflake');
+            const models = ['❄', '•', '✧'];
+            flake.innerHTML = models[Math.floor(Math.random() * models.length)];
+            flake.style.left = `${Math.random() * window.innerWidth}px`;
+            flake.style.fontSize = `${(Math.random() * 12) + 6}px`;
+            const duration = (Math.random() * 6) + 5;
+            flake.style.animationDuration = `${duration}s`;
+            flake.style.opacity = Math.random() * 0.5 + 0.4;
+            container.appendChild(flake);
+            setTimeout(() => { flake.remove(); }, duration * 1000);
+        }
+        setInterval(triggerSnowflake, 180);
+
+        // Auto-apply Frost Card effects to all 4 feature blocks
+        document.addEventListener("DOMContentLoaded", () => {
+            const blocks = document.querySelectorAll('#features-panel > div, .lg\\:col-span-5 > div');
+            blocks.forEach(block => {
+                block.classList.add('frost-card');
+                block.style.backdropFilter = "blur(6px)";
+                block.style.borderTop = "1px solid rgba(147, 197, 253, 0.2)";
+            });
+
+            // Auto-wrap title feature
+            if(dynamicTextNode && !dynamicTextNode.parentElement.classList.contains('animated-text-container')) {
+                const parent = dynamicTextNode.parentElement;
+                const wrapper = document.createElement('span');
+                wrapper.classList.add('animated-text-container');
+                parent.replaceChild(wrapper, dynamicTextNode);
+                wrapper.appendChild(dynamicTextNode);
+                dynamicTextNode.classList.add('text-animate');
+                dynamicTextNode.textContent = hostingServicesList[0];
+            }
+        });
+    </script>
 </body>
 </html>
