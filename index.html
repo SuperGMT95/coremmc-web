@@ -2425,5 +2425,270 @@
 
 </nav>
 </script>
+    <!-- =========================================================================
+     MINECRAFT HERO SECTION WITH FLOATING CORNER CLOUD STICKERS
+     ========================================================================= -->
+
+<style>
+    /* Hero Section main wrapper */
+    .hero-premium-container {
+        width: 100%;
+        background: #0b0d19 url('YOUR_MINECRAFT_BACKGROUND_IMAGE_URL') no-repeat center center / cover;
+        padding: 80px 6%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 40px;
+        box-sizing: border-box;
+        font-family: system-ui, -apple-system, sans-serif;
+        color: #ffffff;
+        overflow: hidden;
+    }
+
+    /* Left Side Content Grid */
+    .hero-left-content {
+        max-width: 50%;
+    }
+
+    .hero-left-content span {
+        color: #94a3b8;
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    .hero-left-content h1 {
+        font-size: 54px !important;
+        font-weight: 800 !important;
+        color: #38bdf8 !important; /* Premium Minecraft Blue */
+        margin: 10px 0 20px 0 !important;
+    }
+
+    .hero-left-content p {
+        color: #cbd5e1;
+        font-size: 16px;
+        line-height: 1.6;
+        margin-bottom: 30px;
+    }
+
+    /* Interactive Buttons Container */
+    .hero-btn-group {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    /* Get Started Button Wrapper for Stickers positioning */
+    .get-started-wrapper {
+        position: relative;
+        display: inline-block;
+    }
+
+    .btn-get-started {
+        background: #2563eb;
+        color: #ffffff;
+        padding: 14px 28px;
+        border-radius: 8px;
+        font-weight: 700;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 15px;
+    }
+
+    .btn-learn-more {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: #ffffff;
+        padding: 14px 28px;
+        border-radius: 8px;
+        font-weight: 600;
+        text-decoration: none;
+        font-size: 15px;
+    }
+
+    /* ----------------------------------------------------
+       RIGHT SIDE: 2x2 CARDS GRID LAYOUT
+       ---------------------------------------------------- */
+    .hero-cards-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+        max-width: 50%;
+    }
+
+    /* Main Feature Card configuration */
+    .feature-card {
+        background: rgba(15, 23, 42, 0.65);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(12px);
+        padding: 25px;
+        border-radius: 14px;
+        position: relative; /* Fixed point for absolute stickers */
+    }
+
+    .card-header-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+    }
+
+    .card-header-row h3 {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 700;
+    }
+
+    .card-icon {
+        color: #38bdf8;
+        font-size: 18px;
+    }
+
+    .feature-card p {
+        margin: 0;
+        color: #94a3b8;
+        font-size: 13.5px;
+        line-height: 1.5;
+    }
+
+    /* ----------------------------------------------------
+       STICKERS MASTER ENGINE (POSITIONING ON RED MARKS)
+       ---------------------------------------------------- */
+    .cloud-sticker {
+        position: absolute;
+        width: 40px; /* Perfectly scaled sticker size */
+        height: auto;
+        pointer-events: none;
+        user-select: none;
+        z-index: 10;
+        filter: drop-shadow(0 4px 10px rgba(56, 189, 248, 0.25));
+    }
+
+    /* Animation assignments for realistic asynchronous movement */
+    .anim-type-a { animation: stickerFloatA 4s ease-in-out infinite; }
+    .anim-type-b { animation: stickerFloatB 3.5s ease-in-out infinite; }
+
+    /* Left Side: Button Red Marks */
+    .stk-btn-top-left { top: -22px; left: -22px; width: 35px; }
+    .stk-btn-bottom-right { bottom: -22px; right: -2px; width: 35px; }
+
+    /* Right Side: Cards Red Marks */
+    .stk-top-left { top: -18px; left: -18px; }
+    .stk-top-right { top: -18px; right: -18px; }
+    .stk-bottom-left { bottom: -18px; left: -18px; }
+    .stk-bottom-right { bottom: -18px; right: -18px; }
+
+    /* ----------------------------------------------------
+       SMOOTH NATURAL FLOATING KEYFRAMES
+       ---------------------------------------------------- */
+    @keyframes stickerFloatA {
+        0% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-6px) rotate(-3deg); }
+        100% { transform: translateY(0px) rotate(0deg); }
+    }
+
+    @keyframes stickerFloatB {
+        0% { transform: translateY(0px) scale(1); }
+        50% { transform: translateY(-5px) scale(1.05) rotate(4deg); }
+        100% { transform: translateY(0px) scale(1); }
+    }
+
+    /* Responsive Support Matrix */
+    @media (max-width: 1024px) {
+        .hero-premium-container { flex-direction: column; padding: 60px 4%; }
+        .hero-left-content { max-width: 100%; text-align: center; }
+        .hero-btn-group { justify-content: center; }
+        .hero-cards-grid { max-width: 100%; width: 100%; }
+        .cloud-sticker { width: 32px; }
+    }
+    @media (max-width: 640px) {
+        .hero-cards-grid { grid-template-columns: 1fr; }
+        .hero-left-content h1 { font-size: 36px !important; }
+    }
+</style>
+
+<div class="hero-premium-container">
+    
+    <!-- LEFT SIDE ELEMENT MAP -->
+    <div class="hero-left-content">
+        <span>Host your own</span>
+        <h1>Minecraft Servers</h1>
+        <p>Experience lightning-fast performance, unbeatable reliability, and 24/7 support for all your favorite multiplayer games.</p>
+        
+        <div class="hero-btn-group">
+            <!-- Get Started Wrapper with Button Stickers -->
+            <div class="get-started-wrapper">
+                <!-- Mark: Button Top Left Cloud -->
+                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3hsYjkxc2QweGRzNnlydWpmZmJvczdyeTBqMHNkNWVjdTNucXFmMyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/V4ErRLRQG2lfKOjIht/giphy.gif" class="cloud-sticker stk-btn-top-left anim-type-a" alt="cloud">
+                
+                <a href="#" class="btn-get-started">Get started &rarr;</a>
+                
+                <!-- Mark: Button Bottom Right Cloud -->
+                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3hsYjkxc2QweGRzNnlydWpmZmJvczdyeTBqMHNkNWVjdTNucXFmMyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/0NjFWM1boB1gX6D2S0/giphy.gif" class="cloud-sticker stk-btn-bottom-right anim-type-b" alt="cloud">
+            </div>
+            
+            <a href="#" class="btn-learn-more">Learn More ↗</a>
+        </div>
+    </div>
+
+    <!-- RIGHT SIDE ELEMENT MAP: CARDS GRID -->
+    <div class="hero-cards-grid">
+        
+        <!-- CARD 1: INSTANT SETUP -->
+        <div class="feature-card">
+            <!-- Mark: Top Left & Bottom Right Corners -->
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3hsYjkxc2QweGRzNnlydWpmZmJvczdyeTBqMHNkNWVjdTNucXFmMyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/V4ErRLRQG2lfKOjIht/giphy.gif" class="cloud-sticker stk-top-left anim-type-a" alt="cloud">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3hsYjkxc2QweGRzNnlydWpmZmJvczdyeTBqMHNkNWVjdTNucXFmMyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/0NjFWM1boB1gX6D2S0/giphy.gif" class="cloud-sticker stk-bottom-right anim-type-b" alt="cloud">
+            
+            <div class="card-header-row">
+                <h3>Instant Setup</h3>
+                <span class="card-icon">⚡</span>
+            </div>
+            <p>Get your server running in under 60 seconds automatically.</p>
+        </div>
+
+        <!-- CARD 2: DDOS PROTECTION -->
+        <div class="feature-card">
+            <!-- Mark: Top Left & Bottom Right Corners -->
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3hsYjkxc2QweGRzNnlydWpmZmJvczdyeTBqMHNkNWVjdTNucXFmMyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/V4ErRLRQG2lfKOjIht/giphy.gif" class="cloud-sticker stk-top-left anim-type-b" alt="cloud">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3hsYjkxc2QweGRzNnlydWpmZmJvczdyeTBqMHNkNWVjdTNucXFmMyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/0NjFWM1boB1gX6D2S0/giphy.gif" class="cloud-sticker stk-bottom-right anim-type-a" alt="cloud">
+            
+            <div class="card-header-row">
+                <h3>DDoS Protection</h3>
+                <span class="card-icon">🛡️</span>
+            </div>
+            <p>Enterprise-grade security shield for your live servers.</p>
+        </div>
+
+        <!-- CARD 3: 99.9% UPTIME -->
+        <div class="feature-card">
+            <!-- Mark: Top Left & Bottom Right Corners -->
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3hsYjkxc2QweGRzNnlydWpmZmJvczdyeTBqMHNkNWVjdTNucXFmMyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/V4ErRLRQG2lfKOjIht/giphy.gif" class="cloud-sticker stk-top-left anim-type-a" alt="cloud">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3hsYjkxc2QweGRzNnlydWpmZmJvczdyeTBqMHNkNWVjdTNucXFmMyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/0NjFWM1boB1gX6D2S0/giphy.gif" class="cloud-sticker stk-bottom-right anim-type-b" alt="cloud">
+            
+            <div class="card-header-row">
+                <h3>99.9% Uptime</h3>
+                <span class="card-icon">📈</span>
+            </div>
+            <p>Reliable hosting setup with guaranteed hardware availability.</p>
+        </div>
+
+        <!-- CARD 4: 24/7 SUPPORT -->
+        <div class="feature-card">
+            <!-- Mark: Top Left & Bottom Right Corners -->
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3hsYjkxc2QweGRzNnlydWpmZmJvczdyeTBqMHNkNWVjdTNucXFmMyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/V4ErRLRQG2lfKOjIht/giphy.gif" class="cloud-sticker stk-top-left anim-type-b" alt="cloud">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3hsYjkxc2QweGRzNnlydWpmZmJvczdyeTBqMHNkNWVjdTNucXFmMyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/0NjFWM1boB1gX6D2S0/giphy.gif" class="cloud-sticker stk-bottom-right anim-type-a" alt="cloud">
+            
+            <div class="card-header-row">
+                <h3>24/7 Support</h3>
+                <span class="card-icon">🎧</span>
+            </div>
+            <p>Expert help team whenever you need it around the clock.</p>
+        </div>
+
+    </div>
+</div>
+</script>
 </body>
 </html>
