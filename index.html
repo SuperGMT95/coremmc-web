@@ -274,6 +274,7 @@
             pointer-events: none;
         }
 
+
         /* -------------------------------- PARTNERS / BRANDS -------------------------------- */
         .brands-section {
             padding: 40px 8%;
@@ -291,6 +292,49 @@
             height: 30px;
             filter: grayscale(1) brightness(2);
         }
+
+        <style>
+/* =========================================================================
+   PERFECT TEXT SIZE & GRADIENT COLOR FIX 
+   ========================================================================= */
+
+/* 1. Base Heading (Host your own) ka size aur spacing fix */
+.hero-left h1 {
+    font-size: 76px !important; 
+    line-height: 1.15 !important;
+    font-weight: 800 !important;
+    margin-bottom: 24px !important;
+}
+
+/* 2. Dynamic Text ka Animation, Size aur original Colors Restoration */
+.dynamic-txt {
+    font-size: 76px !important; 
+    font-weight: 800 !important;
+    color: transparent !important; 
+    background: linear-gradient(135deg, #ffffff, var(--accent)) !important; 
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-stroke: 0px transparent !important; 
+    display: inline-block !important;
+}
+
+/* 3. Layout Wrapper Height Adjustments */
+.dynamic-wrapper {
+    height: 95px !important; 
+    display: block !important;
+    overflow: hidden !important;
+}
+
+/* 4. Responsive Support - Chhote Mobile screens */
+@media (max-width: 768px) {
+    .hero-left h1, .dynamic-txt {
+        font-size: 42px !important;
+    }
+    .dynamic-wrapper {
+        height: 55px !important;
+    }
+}
+</style>
 
         /* -------------------------------- ADVANCED FEATURES -------------------------------- */
         .section-wrapper {
@@ -901,38 +945,6 @@
             drawSnowflakes();
         }
     })();
-</script>
-    /* =========================================================================
-   TEXT SIZE OVERRIDE CODE (PASTE THIS JUST BEFORE YOUR CLOSING </style> TAG)
-   ========================================================================= */
-
-/* 1. Base Heading ka size bada karne ke liye */
-.hero-left h1 {
-    font-size: 76px !important; /* Size badha kar 76px kar diya */
-    line-height: 1.15 !important;
-}
-
-/* 2. Badalne wale dynamic text ka size match karne ke liye */
-.dynamic-txt {
-    font-size: 76px !important; /* Dono text ka size ekdum barabar block ho jayega */
-}
-
-/* 3. Layout structural wrapper - taaki bada text niche se cut na ho */
-.dynamic-wrapper {
-    height: 100px !important; /* Isse bada text smoothly slide karega bina kate */
-    display: block !important;
-    overflow: hidden !important;
-}
-
-/* Responsive fix: Chhoti screens (Mobile) par text automatic sahi adjustment lele */
-@media (max-width: 768px) {
-    .hero-left h1, .dynamic-txt {
-        font-size: 42px !important;
-    }
-    .dynamic-wrapper {
-        height: 60px !important;
-    }
-}
 </script>
 </body>
 </html>
