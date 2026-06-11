@@ -294,47 +294,6 @@
         }
 
         <style>
-/* =========================================================================
-   PERFECT TEXT SIZE & GRADIENT COLOR FIX 
-   ========================================================================= */
-
-/* 1. Base Heading (Host your own) ka size aur spacing fix */
-.hero-left h1 {
-    font-size: 76px !important; 
-    line-height: 1.15 !important;
-    font-weight: 800 !important;
-    margin-bottom: 24px !important;
-}
-
-/* 2. Dynamic Text ka Animation, Size aur original Colors Restoration */
-.dynamic-txt {
-    font-size: 76px !important; 
-    font-weight: 800 !important;
-    color: transparent !important; 
-    background: linear-gradient(135deg, #ffffff, var(--accent)) !important; 
-    -webkit-background-clip: text !important;
-    background-clip: text !important;
-    -webkit-text-stroke: 0px transparent !important; 
-    display: inline-block !important;
-}
-
-/* 3. Layout Wrapper Height Adjustments */
-.dynamic-wrapper {
-    height: 95px !important; 
-    display: block !important;
-    overflow: hidden !important;
-}
-
-/* 4. Responsive Support - Chhote Mobile screens */
-@media (max-width: 768px) {
-    .hero-left h1, .dynamic-txt {
-        font-size: 42px !important;
-    }
-    .dynamic-wrapper {
-        height: 55px !important;
-    }
-}
-</style>
 
         /* -------------------------------- ADVANCED FEATURES -------------------------------- */
         .section-wrapper {
@@ -945,6 +904,73 @@
             drawSnowflakes();
         }
     })();
+</script>
+    <style>
+/* =========================================================================
+   PERFECT TEXT SIZE & GRADIENT COLOR FIX 
+   ========================================================================= */
+
+/* 1. Base Heading (Host your own) ka size aur spacing fix */
+.hero-left h1 {
+    font-size: 76px !important; 
+    line-height: 1.15 !important;
+    font-weight: 800 !important;
+    margin-bottom: 24px !important;
+}
+
+/* 2. Dynamic Text ka Animation, Size aur original Colors Restoration */
+.dynamic-txt {
+    font-size: 76px !important; 
+    font-weight: 800 !important;
+    color: transparent !important; 
+    background: linear-gradient(135deg, #ffffff, var(--accent)) !important; 
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-stroke: 0px transparent !important; 
+    display: inline-block !important;
+}
+
+/* 3. Layout Wrapper Height Adjustments */
+.dynamic-wrapper {
+    height: 95px !important; 
+    display: block !important;
+    overflow: hidden !important;
+}
+
+/* 4. Responsive Support - Chhote Mobile screens */
+@media (max-width: 768px) {
+    .hero-left h1, .dynamic-txt {
+        font-size: 42px !important;
+    }
+    .dynamic-wrapper {
+        height: 55px !important;
+    }
+}
+</style>
+    </script>
+    <style>
+    /* Hero container ke background overlay ko ekdum smooth aur bright karne ke liye */
+    .hero-container::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        /* Kale rang ko kam kiya (0.85 se 0.45) taaki piche ki image saaf chamke */
+        background: linear-gradient(180deg, rgba(7, 9, 19, 0.45) 0%, rgba(7, 9, 19, 0.6) 100%) !important;
+        
+        /* Halka blur effect jaisa aapne bola */
+        backdrop-filter: blur(3px) !important; 
+        -webkit-backdrop-filter: blur(3px) !important;
+        
+        z-index: -1 !important;
+    }
+
+    /* Piche ki background image poori tarah se cover aur saaf dikhne ke liye */
+    .hero-container {
+        background-size: cover !important;
+        background-position: center center !important;
+        background-repeat: no-repeat !important;
+    }
+</style>
 </script>
 </body>
 </html>
