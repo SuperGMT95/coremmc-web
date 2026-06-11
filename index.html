@@ -651,103 +651,270 @@
         <h2 class="section-title">CoreMMC Hosting <span>Plans</span></h2>
 
         <div class="pricing-grid">
-            <!-- Plan 1 -->
-            <div class="price-card">
-                <div class="price-header">
-                    <h3>Minecraft Servers</h3>
-                    <p>High-performance game nodes for popular communities.</p>
-                    <div class="pricing-amount">59<span>/month</span></div>
-                </div>
-                <ul class="price-features">
-                    <li><i class="fa-solid fa-circle-check"></i> Instant deployment</li>
-                    <li><i class="fa-solid fa-circle-check"></i> DDoS shield coverage</li>
-                    <li><i class="fa-solid fa-circle-check"></i> 24/7 Priority support</li>
-                    <li><li><i class="fa-solid fa-circle-check"></i> Full FTP panel access</li></li>
-                </ul>
-                <button class="order-btn">View More</button>
-            </div>
+        <style>
+    /* Main container jisme saare cards rahenge */
+    .pricing-section {
+        padding: 60px 8%;
+        background-color: #070913;
+        color: #ffffff;
+    }
 
-            <!-- Plan 2 (Featured) -->
-            <div class="price-card premium-border">
-                <div class="price-header">
-                    <h3>VPS Hosting</h3>
-                    <p>Scalable virtual private environments for web and apps.</p>
-                    <div class="pricing-amount">$9.99<span>/month</span></div>
-                </div>
-                <ul class="price-features">
-                    <li><i class="fa-solid fa-circle-check"></i> Full Root OS Access</li>
-                    <li><i class="fa-solid fa-circle-check"></i> Pure NVMe SSD Storage</li>
-                    <li><i class="fa-solid fa-circle-check"></i> 99.9% Uptime SLA</li>
-                    <li><i class="fa-solid fa-circle-check"></i> Multiple Linux OS templates</li>
-                </ul>
-                <button class="order-btn">Order Now</button>
-            </div>
+    /* Grid layout: Ek line me strictly 3 cards dikhane ke liye */
+    .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        margin-top: 40px;
+    }
 
-            <!-- Plan 3 -->
-            <div class="price-card">
-                <div class="price-header">
-                    <h3>Dedicated Servers</h3>
-                    <p>Enterprise-grade complete bare-metal power systems.</p>
-                    <div class="pricing-amount">$99.99<span>/month</span></div>
-                </div>
-                <ul class="price-features">
-                    <li><i class="fa-solid fa-circle-check"></i> 100% Dedicated Hardware</li>
-                    <li><i class="fa-solid fa-circle-check"></i> Custom routing options</li>
-                    <li><i class="fa-solid fa-circle-check"></i> 1Gbps unmetered port</li>
-                    <li><i class="fa-solid fa-circle-check"></i> Advanced IPMI dashboard</li>
-                </ul>
-                <button class="order-btn">Get A Quote</button>
-            </div>
+    /* Base Card Style */
+    .price-card {
+        position: relative;
+        background-color: rgba(13, 18, 36, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 16px;
+        padding: 35px 25px;
+        overflow: hidden;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
 
-            <!-- Plan 4 -->
-            <div class="price-card">
-                <div class="price-header">
-                    <h3>Hytale</h3>
-                    <p>Enterprise-grade complete bare-metal power systems.</p>
-                    <div class="pricing-amount">$99.99<span>/month</span></div>
-                </div>
-                <ul class="price-features">
-                    <li><i class="fa-solid fa-circle-check"></i> 100% Dedicated Hardware</li>
-                    <li><i class="fa-solid fa-circle-check"></i> Custom routing options</li>
-                    <li><i class="fa-solid fa-circle-check"></i> 1Gbps unmetered port</li>
-                    <li><i class="fa-solid fa-circle-check"></i> Advanced IPMI dashboard</li>
-                </ul>
-                <button class="order-btn">Get Order</button>
-            </div>
+    /* Card Hover Effect */
+    .price-card:hover {
+        transform: translateY(-8px);
+        border-color: #38bdf8;
+        box-shadow: 0 10px 30px rgba(56, 189, 248, 0.15);
+    }
 
-            <!-- Plan 5 -->
-            <div class="price-card">
-                <div class="price-header">
-                    <h3>Web Hostin</h3>
-                    <p>Enterprise-grade complete bare-metal power systems.</p>
-                    <div class="pricing-amount">$99.99<span>/month</span></div>
-                </div>
-                <ul class="price-features">
-                    <li><i class="fa-solid fa-circle-check"></i> 100% Dedicated Hardware</li>
-                    <li><i class="fa-solid fa-circle-check"></i> Custom routing options</li>
-                    <li><i class="fa-solid fa-circle-check"></i> 1Gbps unmetered port</li>
-                    <li><i class="fa-solid fa-circle-check"></i> Advanced IPMI dashboard</li>
-                </ul>
-                <button class="order-btn">Get Order</button>
-            </div>
+    /* Card ke piche image background aur dark overlay lagane ke liye */
+    .price-card::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        /* Halka background dikhane ke liye opacity set ki hai taaki text saaf dikhe */
+        opacity: 0.25; 
+        z-index: -2;
+        transition: opacity 0.3s ease;
+    }
+    
+    .price-card:hover::before {
+        opacity: 0.35; /* Hover par image thodi aur saaf dikhegi */
+    }
 
-             <!-- Plan 7 -->
-            <div class="price-card">
-                <div class="price-header">
-                    <h3>Discord Bot Hostin</h3>
-                    <p>Enterprise-grade complete bare-metal power systems.</p>
-                    <div class="pricing-amount">$99.99<span>/month</span></div>
-                </div>
-                <ul class="price-features">
-                    <li><i class="fa-solid fa-circle-check"></i> 100% Dedicated Hardware</li>
-                    <li><i class="fa-solid fa-circle-check"></i> Custom routing options</li>
-                    <li><i class="fa-solid fa-circle-check"></i> 1Gbps unmetered port</li>
-                    <li><i class="fa-solid fa-circle-check"></i> Advanced IPMI dashboard</li>
-                </ul>
-                <button class="order-btn">Get Order</button>
+    /* Dark tint overlay jo images ko text ke sath blend karega */
+    .price-card::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(7, 9, 19, 0.5) 0%, rgba(7, 9, 19, 0.85) 100%);
+        z-index: -1;
+    }
+
+    /* Specific Cards ke Background Images Links Mapping */
+    .card-minecraft::before { background-image: url('https://i.ibb.co/Qv4Hg618/image-search-1781160186970.jpg'); }
+    .card-vps::before { background-image: url('https://i.ibb.co/NnnjsKjb/image-search-1781160367634.webp'); }
+    .card-coreshield::before { background-image: url(''); } /* Core Shield ki image link baad me yahan single quotes '' ke andar daal dena */
+    .card-hytale::before { background-image: url('https://i.ibb.co/prPY37JZ/image-search-1781160210762.webp'); }
+    .card-web::before { background-image: url('https://i.ibb.co/4ZdWcSs4/image-search-1781160297934.png'); }
+    .card-discord::before { background-image: url('https://i.ibb.co/N2sJQYVj/image-search-1781160254549.png'); }
+
+    /* Inside Card Elements Typography styling */
+    .card-header h3 {
+        font-size: 22px;
+        font-weight: 700;
+        margin-bottom: 15px;
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .card-header h3 i {
+        color: #38bdf8; /* Cyan icon accent color */
+    }
+
+    .card-price {
+        font-size: 32px;
+        font-weight: 800;
+        margin: 20px 0;
+        color: #ffffff;
+    }
+
+    .card-price span {
+        font-size: 14px;
+        color: #94a3b8;
+        font-weight: 500;
+    }
+
+    /* Card Features List style */
+    .card-features {
+        list-style: none;
+        padding: 0;
+        margin: 20px 0 30px 0;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .card-features li {
+        font-size: 14px;
+        color: #cbd5e1;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .card-features li i {
+        color: #10b981; /* Green checkmark icon color */
+        font-size: 14px;
+    }
+
+    /* Premium Button Style inside cards */
+    .card-btn {
+        display: block;
+        text-align: center;
+        background: linear-gradient(135deg, #2563eb, #1d4ed8);
+        color: #ffffff;
+        padding: 12px 20px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 15px;
+        text-decoration: none;
+        box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+        transition: all 0.3s ease;
+    }
+
+    .card-btn:hover {
+        background: linear-gradient(135deg, #3b82f6, #2563eb);
+        box-shadow: 0 6px 20px rgba(37, 99, 235, 0.5);
+        transform: translateY(-1px);
+    }
+
+    /* Responsive Support: Mobile aur Tablets ke liye auto adjusting */
+    @media (max-width: 1024px) {
+        .pricing-grid {
+            grid-template-columns: repeat(2, 1fr); /* Medium screens par 2 cards */
+        }
+    }
+
+    @media (max-width: 768px) {
+        .pricing-section {
+            padding: 40px 4%;
+        }
+        .pricing-grid {
+            grid-template-columns: 1fr; /* Mobile screens par automatic 1 card */
+            gap: 20px;
+        }
+    }
+</style>
+
+<section class="pricing-section">
+    <div class="pricing-grid">
+
+        <div class="price-card card-minecraft">
+            <div class="card-header">
+                <h3><i class="fa-solid fa-cube"></i>Minecraft Servers</h3>
+                <div class="card-price">$4.99 <span>/month</span></div>
+                <p style="color: #94a3b8; font-size: 13px;">High-performance game hosting for all popular games.</p>
             </div>
+            <ul class="card-features">
+                <li><i class="fa-solid fa-circle-check"></i> Instant deployment</li>
+                <li><i class="fa-solid fa-circle-check"></i> DDoS protection</li>
+                <li><i class="fa-solid fa-circle-check"></i> 24/7 support</li>
+                <li><i class="fa-solid fa-circle-check"></i> Custom configurations</li>
+                <li><i class="fa-solid fa-circle-check"></i> Mod support</li>
+            </ul>
+            <a href="#" class="card-btn">Order Now</a>
         </div>
-    </section>
+
+        <div class="price-card card-vps">
+            <div class="card-header">
+                <h3><i class="fa-solid fa-server"></i> VPS Hosting</h3>
+                <div class="card-price">$9.99 <span>/month</span></div>
+                <p style="color: #94a3b8; font-size: 13px;">Scalable virtual private servers for your applications.</p>
+            </div>
+            <ul class="card-features">
+                <li><i class="fa-solid fa-circle-check"></i> Full root access</li>
+                <li><i class="fa-solid fa-circle-check"></i> SSD storage</li>
+                <li><i class="fa-solid fa-circle-check"></i> 99.9% uptime</li>
+                <li><i class="fa-solid fa-circle-check"></i> Multiple OS options</li>
+                <li><i class="fa-solid fa-circle-check"></i> Backup included</li>
+            </ul>
+            <a href="#" class="card-btn">Order Now</a>
+        </div>
+
+        <div class="price-card card-coreshield">
+            <div class="card-header">
+                <h3><i class="fa-solid fa-shield-halved"></i> Core Shield</h3>
+                <div class="card-price">$99.99 <span>/month</span></div>
+                <p style="color: #94a3b8; font-size: 13px;">Enterprise-grade dedicated hardware for maximum power.</p>
+            </div>
+            <ul class="card-features">
+                <li><i class="fa-solid fa-circle-check"></i> Bare metal performance</li>
+                <li><i class="fa-solid fa-circle-check"></i> Custom hardware</li>
+                <li><i class="fa-solid fa-circle-check"></i> Enterprise support</li>
+                <li><i class="fa-solid fa-circle-check"></i> Advanced security</li>
+                <li><i class="fa-solid fa-circle-check"></i> Managed services</li>
+            </ul>
+            <a href="#" class="card-btn">Get a Quote</a>
+        </div>
+
+        <div class="price-card card-web">
+            <div class="card-header">
+                <h3><i class="fa-solid fa-globe"></i> Web Hosting</h3>
+                <div class="card-price">$2.99 <span>/month</span></div>
+                <p style="color: #94a3b8; font-size: 13px;">Professional web hosting with high-performance servers.</p>
+            </div>
+            <ul class="card-features">
+                <li><i class="fa-solid fa-circle-check"></i> SSD storage</li>
+                <li><i class="fa-solid fa-circle-check"></i> 99.9% uptime</li>
+                <li><i class="fa-solid fa-circle-check"></i> 24/7 support</li>
+                <li><i class="fa-solid fa-circle-check"></i> Free SSL certificate</li>
+                <li><i class="fa-solid fa-circle-check"></i> Daily backups</li>
+            </ul>
+            <a href="#" class="card-btn">Order Now</a>
+        </div>
+
+        <div class="price-card card-discord">
+            <div class="card-header">
+                <h3><i class="fa-brands fa-discord"></i> Discord Bot Hosting</h3>
+                <div class="card-price">$2.99 <span>/month</span></div>
+                <p style="color: #94a3b8; font-size: 13px;">Reliable and affordable Discord bot hosting with 24/7 uptime.</p>
+            </div>
+            <ul class="card-features">
+                <li><i class="fa-solid fa-circle-check"></i> SSD storage</li>
+                <li><i class="fa-solid fa-circle-check"></i> 99.9% uptime</li>
+                <li><i class="fa-solid fa-circle-check"></i> 24/7 support</li>
+                <li><i class="fa-solid fa-circle-check"></i> Advanced security</li>
+                <li><i class="fa-solid fa-circle-check"></i> Daily backups</li>
+            </ul>
+            <a href="#" class="card-btn">Order Now</a>
+        </div>
+
+        <div class="price-card card-hytale">
+            <div class="card-header">
+                <h3><i class="fa-solid fa-gamepad"></i> Hytale Servers</h3>
+                <div class="card-price">$5.99 <span>/month</span></div>
+                <p style="color: #94a3b8; font-size: 13px;">Next-gen high performance server deployment ready.</p>
+            </div>
+            <ul class="card-features">
+                <li><i class="fa-solid fa-circle-check"></i> Ultra low latency</li>
+                <li><i class="fa-solid fa-circle-check"></i> High speed nodes</li>
+                <li><i class="fa-solid fa-circle-check"></i> Automatic setup</li>
+                <li><i class="fa-solid fa-circle-check"></i> Full file control</li>
+                <li><i class="fa-solid fa-circle-check"></i> 24/7 tracking</li>
+            </ul>
+            <a href="#" class="card-btn">Pre-Order</a>
+        </div>
+
+    </div>
+</section>
 
     <!-- -------------------------------- FOOTER -------------------------------- -->
     <footer>
@@ -1033,272 +1200,6 @@
         background-position: center center !important;
         background-repeat: no-repeat !important;
     }
-</style>
-</script>
-    <style>
-    /* Main container jisme saare cards rahenge */
-    .pricing-section {
-        padding: 60px 8%;
-        background-color: #070913;
-        color: #ffffff;
-    }
-
-    /* Grid layout: Ek line me strictly 3 cards dikhane ke liye */
-    .pricing-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 30px;
-        margin-top: 40px;
-    }
-
-    /* Base Card Style */
-    .price-card {
-        position: relative;
-        background-color: rgba(13, 18, 36, 0.6);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 16px;
-        padding: 35px 25px;
-        overflow: hidden;
-        z-index: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    /* Card Hover Effect */
-    .price-card:hover {
-        transform: translateY(-8px);
-        border-color: #38bdf8;
-        box-shadow: 0 10px 30px rgba(56, 189, 248, 0.15);
-    }
-
-    /* Card ke piche image background aur dark overlay lagane ke liye */
-    .price-card::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        /* Halka background dikhane ke liye opacity set ki hai taaki text saaf dikhe */
-        opacity: 0.25; 
-        z-index: -2;
-        transition: opacity 0.3s ease;
-    }
-    
-    .price-card:hover::before {
-        opacity: 0.35; /* Hover par image thodi aur saaf dikhegi */
-    }
-
-    /* Dark tint overlay jo images ko text ke sath blend karega */
-    .price-card::after {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(180deg, rgba(7, 9, 19, 0.5) 0%, rgba(7, 9, 19, 0.85) 100%);
-        z-index: -1;
-    }
-
-    /* Specific Cards ke Background Images Links Mapping */
-    .card-minecraft::before { background-image: url('https://i.ibb.co/Qv4Hg618/image-search-1781160186970.jpg'); }
-    .card-vps::before { background-image: url('https://i.ibb.co/NnnjsKjb/image-search-1781160367634.webp'); }
-    .card-coreshield::before { background-image: url(''); } /* Core Shield ki image link baad me yahan single quotes '' ke andar daal dena */
-    .card-hytale::before { background-image: url('https://i.ibb.co/prPY37JZ/image-search-1781160210762.webp'); }
-    .card-web::before { background-image: url('https://i.ibb.co/4ZdWcSs4/image-search-1781160297934.png'); }
-    .card-discord::before { background-image: url('https://i.ibb.co/N2sJQYVj/image-search-1781160254549.png'); }
-
-    /* Inside Card Elements Typography styling */
-    .card-header h3 {
-        font-size: 22px;
-        font-weight: 700;
-        margin-bottom: 15px;
-        color: #ffffff;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-    
-    .card-header h3 i {
-        color: #38bdf8; /* Cyan icon accent color */
-    }
-
-    .card-price {
-        font-size: 32px;
-        font-weight: 800;
-        margin: 20px 0;
-        color: #ffffff;
-    }
-
-    .card-price span {
-        font-size: 14px;
-        color: #94a3b8;
-        font-weight: 500;
-    }
-
-    /* Card Features List style */
-    .card-features {
-        list-style: none;
-        padding: 0;
-        margin: 20px 0 30px 0;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-    }
-
-    .card-features li {
-        font-size: 14px;
-        color: #cbd5e1;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-
-    .card-features li i {
-        color: #10b981; /* Green checkmark icon color */
-        font-size: 14px;
-    }
-
-    /* Premium Button Style inside cards */
-    .card-btn {
-        display: block;
-        text-align: center;
-        background: linear-gradient(135deg, #2563eb, #1d4ed8);
-        color: #ffffff;
-        padding: 12px 20px;
-        border-radius: 8px;
-        font-weight: 600;
-        font-size: 15px;
-        text-decoration: none;
-        box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
-        transition: all 0.3s ease;
-    }
-
-    .card-btn:hover {
-        background: linear-gradient(135deg, #3b82f6, #2563eb);
-        box-shadow: 0 6px 20px rgba(37, 99, 235, 0.5);
-        transform: translateY(-1px);
-    }
-
-    /* Responsive Support: Mobile aur Tablets ke liye auto adjusting */
-    @media (max-width: 1024px) {
-        .pricing-grid {
-            grid-template-columns: repeat(2, 1fr); /* Medium screens par 2 cards */
-        }
-    }
-
-    @media (max-width: 768px) {
-        .pricing-section {
-            padding: 40px 4%;
-        }
-        .pricing-grid {
-            grid-template-columns: 1fr; /* Mobile screens par automatic 1 card */
-            gap: 20px;
-        }
-    }
-</style>
-
-<section class="pricing-section">
-    <div class="pricing-grid">
-
-        <div class="price-card card-minecraft">
-            <div class="card-header">
-                <h3><i class="fa-solid fa-cube"></i> Game Servers</h3>
-                <div class="card-price">$4.99 <span>/month</span></div>
-                <p style="color: #94a3b8; font-size: 13px;">High-performance game hosting for all popular games.</p>
-            </div>
-            <ul class="card-features">
-                <li><i class="fa-solid fa-circle-check"></i> Instant deployment</li>
-                <li><i class="fa-solid fa-circle-check"></i> DDoS protection</li>
-                <li><i class="fa-solid fa-circle-check"></i> 24/7 support</li>
-                <li><i class="fa-solid fa-circle-check"></i> Custom configurations</li>
-                <li><i class="fa-solid fa-circle-check"></i> Mod support</li>
-            </ul>
-            <a href="#" class="card-btn">View More</a>
-        </div>
-
-        <div class="price-card card-vps">
-            <div class="card-header">
-                <h3><i class="fa-solid fa-server"></i> VPS Hosting</h3>
-                <div class="card-price">$9.99 <span>/month</span></div>
-                <p style="color: #94a3b8; font-size: 13px;">Scalable virtual private servers for your applications.</p>
-            </div>
-            <ul class="card-features">
-                <li><i class="fa-solid fa-circle-check"></i> Full root access</li>
-                <li><i class="fa-solid fa-circle-check"></i> SSD storage</li>
-                <li><i class="fa-solid fa-circle-check"></i> 99.9% uptime</li>
-                <li><i class="fa-solid fa-circle-check"></i> Multiple OS options</li>
-                <li><i class="fa-solid fa-circle-check"></i> Backup included</li>
-            </ul>
-            <a href="#" class="card-btn">Order Now</a>
-        </div>
-
-        <div class="price-card card-coreshield">
-            <div class="card-header">
-                <h3><i class="fa-solid fa-shield-halved"></i> Core Shield</h3>
-                <div class="card-price">$99.99 <span>/month</span></div>
-                <p style="color: #94a3b8; font-size: 13px;">Enterprise-grade dedicated hardware for maximum power.</p>
-            </div>
-            <ul class="card-features">
-                <li><i class="fa-solid fa-circle-check"></i> Bare metal performance</li>
-                <li><i class="fa-solid fa-circle-check"></i> Custom hardware</li>
-                <li><i class="fa-solid fa-circle-check"></i> Enterprise support</li>
-                <li><i class="fa-solid fa-circle-check"></i> Advanced security</li>
-                <li><i class="fa-solid fa-circle-check"></i> Managed services</li>
-            </ul>
-            <a href="#" class="card-btn">Get a Quote</a>
-        </div>
-
-        <div class="price-card card-web">
-            <div class="card-header">
-                <h3><i class="fa-solid fa-globe"></i> Web Hosting</h3>
-                <div class="card-price">$2.99 <span>/month</span></div>
-                <p style="color: #94a3b8; font-size: 13px;">Professional web hosting with high-performance servers.</p>
-            </div>
-            <ul class="card-features">
-                <li><i class="fa-solid fa-circle-check"></i> SSD storage</li>
-                <li><i class="fa-solid fa-circle-check"></i> 99.9% uptime</li>
-                <li><i class="fa-solid fa-circle-check"></i> 24/7 support</li>
-                <li><i class="fa-solid fa-circle-check"></i> Free SSL certificate</li>
-                <li><i class="fa-solid fa-circle-check"></i> Daily backups</li>
-            </ul>
-            <a href="#" class="card-btn">Order Now</a>
-        </div>
-
-        <div class="price-card card-discord">
-            <div class="card-header">
-                <h3><i class="fa-brands fa-discord"></i> Discord Bot Hosting</h3>
-                <div class="card-price">$2.99 <span>/month</span></div>
-                <p style="color: #94a3b8; font-size: 13px;">Reliable and affordable Discord bot hosting with 24/7 uptime.</p>
-            </div>
-            <ul class="card-features">
-                <li><i class="fa-solid fa-circle-check"></i> SSD storage</li>
-                <li><i class="fa-solid fa-circle-check"></i> 99.9% uptime</li>
-                <li><i class="fa-solid fa-circle-check"></i> 24/7 support</li>
-                <li><i class="fa-solid fa-circle-check"></i> Advanced security</li>
-                <li><i class="fa-solid fa-circle-check"></i> Daily backups</li>
-            </ul>
-            <a href="#" class="card-btn">Order Now</a>
-        </div>
-
-        <div class="price-card card-hytale">
-            <div class="card-header">
-                <h3><i class="fa-solid fa-gamepad"></i> Hytale Servers</h3>
-                <div class="card-price">$5.99 <span>/month</span></div>
-                <p style="color: #94a3b8; font-size: 13px;">Next-gen high performance server deployment ready.</p>
-            </div>
-            <ul class="card-features">
-                <li><i class="fa-solid fa-circle-check"></i> Ultra low latency</li>
-                <li><i class="fa-solid fa-circle-check"></i> High speed nodes</li>
-                <li><i class="fa-solid fa-circle-check"></i> Automatic setup</li>
-                <li><i class="fa-solid fa-circle-check"></i> Full file control</li>
-                <li><i class="fa-solid fa-circle-check"></i> 24/7 tracking</li>
-            </ul>
-            <a href="#" class="card-btn">Pre-Order</a>
-        </div>
-
-    </div>
-</section>
 </script>
 </body>
 </html>
