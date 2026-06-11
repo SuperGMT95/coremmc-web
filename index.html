@@ -1369,7 +1369,44 @@
     }
 </style>
     </div>
-</section>
 </script>
+ <style>
+    /* 1. Main Pricing section ka background halka bright aur transparent kiya */
+    .pricing-section {
+        background-color: rgba(7, 9, 19, 0.75) !important;
+        backdrop-filter: blur(4px) !important;
+        -webkit-backdrop-filter: blur(4px) !important;
+    }
+
+    /* 2. Cards ke andar ka background aur glass look block kiya */
+    .price-card {
+        background-color: rgba(15, 23, 42, 0.35) !important; /* Kaala rang bohot kam kiya */
+        border: 1px solid rgba(255, 255, 255, 0.12) !important; /* Border thodi aur saaf dikhegi */
+        backdrop-filter: blur(6px) !important; /* Cards ke andar halka premium blur */
+        -webkit-backdrop-filter: blur(6px) !important;
+    }
+
+    /* 3. Card ke piche ki images ko 100% visible aur bright karne ke liye */
+    .price-card::before {
+        opacity: 0.55 !important; /* Image ki brightness badha di (pehle 0.25 thi) */
+        transition: opacity 0.3s ease !important;
+    }
+
+    /* Card par mouse le jaane par image aur zyada saaf chamkegi */
+    .price-card:hover::before {
+        opacity: 0.75 !important;
+    }
+
+    /* 4. Card ke andar ka jo kaala filter (gradient) tha use ekdum halka kiya */
+    .price-card::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        /* Sirf niche ki side halka dark tint taaki button aur text visible rahe */
+        background: linear-gradient(180deg, rgba(7, 9, 19, 0.1) 0%, rgba(7, 9, 19, 0.5) 100%) !important;
+        z-index: -1 !important;
+    }
+</style>
+    </script>
 </body>
 </html>
