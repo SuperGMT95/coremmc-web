@@ -737,5 +737,183 @@
             }, 300);
         }, 3000);
     </script>
+    <!-- =========================================================================
+     PASTE THIS CODE JUST BEFORE YOUR CLOSING </body> TAG (BELOW OLD SCRIPT)
+     ========================================================================= -->
+
+<!-- CSS Modifications & Snow Container -->
+<style>
+    /* Top Navbar text modification (First Red Mark Area) */
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+    .logo::after {
+        content: 'CoreMMC Hosting';
+        font-size: 20px;
+        font-weight: 800;
+        letter-spacing: 0.5px;
+        background: linear-gradient(135deg, #ffffff 40%, var(--accent));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        white-space: nowrap;
+    }
+
+    /* Dynamic Hero Area Background Controller (Third Red Mark Se Upar Ka Area) */
+    .hero-container {
+        position: relative;
+        overflow: hidden;
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        transition: background-image 0.8s ease-in-out;
+        z-index: 1;
+    }
+
+    /* Dark gradient overlay so text remains perfectly readable on dynamic backgrounds */
+    .hero-container::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(7, 9, 19, 0.85) 0%, rgba(7, 9, 19, 0.95) 100%);
+        z-index: -1;
+        transition: all 0.5s;
+    }
+
+    /* Third Red Mark Line (Separation border just above brands logo) */
+    .hero-container {
+        border-bottom: 2px solid rgba(56, 189, 248, 0.2);
+    }
+
+    /* Dynamic changing heading style (Second Red Mark Area) */
+    .dynamic-txt {
+        display: inline-block;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        color: var(--accent) !important;
+        text-shadow: 0 0 20px rgba(56, 189, 248, 0.6);
+    }
+
+    /* Dot Snow Falling Canvas Area */
+    #snow-canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 0;
+    }
+    
+    .hero-left, .hero-right {
+        position: relative;
+        z-index: 2;
+    }
+</style>
+
+<!-- Canvas Element for Dot Snow Effect -->
+<canvas id="snow-canvas"></canvas>
+
+<!-- Main Execution Logic Overriding Old Animation Loop -->
+<script>
+    (function() {
+        // Data containing text changes and matching background links provided by you
+        const rotationData = [
+            { text: "Discord Bots", bg: "https://i.ibb.co/VYXb1jv3/image-search-1781151058394.png" },
+            { text: "VPS Servers", bg: "https://i.ibb.co/0V1ZZzjw/image-search-1781150727343.png" },
+            { text: "Minecraft Servers", bg: "https://i.ibb.co/kVDqwL83/image-search-1781150799627.jpg" },
+            { text: "Web Servers", bg: "https://i.ibb.co/d4mh6P2G/image-search-1781150868415.jpg" },
+            { text: "Hytale Servers", bg: "https://i.ibb.co/7JxLkB4R/image-search-1781150921963.jpg" }
+        ];
+
+        let dataIndex = 0;
+        const textElement = document.getElementById("dynamic-game");
+        const heroSection = document.querySelector(".hero-container");
+
+        // Function to handle seamless background and text transitions
+        function updateHeroSlide() {
+            if (!textElement || !heroSection) return;
+
+            // Fade out animation sequence
+            textElement.style.opacity = "0";
+            textElement.style.transform = "translateY(-10px)";
+
+            setTimeout(() => {
+                dataIndex = (dataIndex + 1) % rotationData.length;
+                const current = rotationData[dataIndex];
+
+                // Setting text contents and changing background image smoothly
+                textElement.textContent = current.text;
+                heroSection.style.backgroundImage = `url('${current.bg}')`;
+
+                // Fade back in animation sequence
+                textElement.style.opacity = "1";
+                textElement.style.transform = "translateY(0)";
+            }, 350);
+        }
+
+        // Initialize First Background immediately
+        if (heroSection) {
+            heroSection.style.backgroundImage = `url('${rotationData[0].bg}')`;
+        }
+
+        // Run rotation loop every 4 seconds
+        setInterval(updateHeroSlide, 4000);
+
+        // --- DOT SNOW FALLING SYSTEM LOGIC ---
+        const canvas = document.getElementById('snow-canvas');
+        if (canvas) {
+            const ctx = canvas.getContext('2d');
+            let width = canvas.width = heroSection.offsetWidth;
+            let height = canvas.height = heroSection.offsetHeight;
+
+            // Resize handle to keep canvas scaling perfect
+            window.addEventListener('resize', () => {
+                if (heroSection) {
+                    width = canvas.width = heroSection.offsetWidth;
+                    height = canvas.height = heroSection.offsetHeight;
+                }
+            });
+
+            const numFlakes = 65; // Density control for smooth dot particles
+            const flakes = [];
+
+            for (let i = 0; i < numFlakes; i++) {
+                flakes.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    r: Math.random() * 2 + 1, // Tiny clean dots
+                    d: Math.random() * numFlakes, // Density config
+                    speed: Math.random() * 1 + 0.5 // Gentle velocity
+                });
+            }
+
+            function drawSnowflakes() {
+                ctx.clearRect(0, 0, width, height);
+                ctx.fillStyle = "rgba(255, 255, 255, 0.65)";
+                ctx.beginPath();
+                
+                for (let i = 0; i < numFlakes; i++) {
+                    const f = flakes[i];
+                    ctx.moveTo(f.x, f.y);
+                    ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2, true);
+
+                    // Update loop positions for snow behavior
+                    f.y += f.speed;
+                    f.x += Math.sin(f.d / 10) * 0.3; // Light sway
+
+                    // Loop reset mechanics when reaching bottom line boundary
+                    if (f.y > height) {
+                        flakes[i] = { x: Math.random() * width, y: 0, r: f.r, d: f.d, speed: f.speed };
+                    }
+                }
+                ctx.fill();
+                requestAnimationFrame(drawSnowflakes);
+            }
+            drawSnowflakes();
+        }
+    })();
+</script>
 </body>
 </html>
