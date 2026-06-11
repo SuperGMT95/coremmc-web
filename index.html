@@ -1,1 +1,702 @@
-e
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoreMMC Hosting - Game Hosting, VPS & Dedicated Servers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        darkBg: '#060814',
+                        cardBg: '#0b0f26',
+                        accentBlue: '#2563eb',
+                        neonCyan: '#06b6d4',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #060814;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        .glow-effect {
+            box-shadow: 0 0 20px rgba(37, 99, 235, 0.2);
+        }
+        .neon-text-glow {
+            text-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #060814;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2563eb;
+        }
+        /* Floating Snow/Particles effect from video */
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: floatAround 12s infinite linear;
+        }
+        @keyframes floatAround {
+            0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) translateX(50px) rotate(360deg); opacity: 0; }
+        }
+        /* Icicles decorations style from header */
+        .icicle {
+            position: absolute;
+            background: linear-gradient(to bottom, #2563eb, transparent);
+            width: 4px;
+            border-bottom-left-radius: 4px;
+            border-bottom-right-radius: 4px;
+        }
+    </style>
+</head>
+<body class="font-sans relative">
+
+    <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none" id="particle-container"></div>
+
+    <div class="w-full bg-blue-600 text-white text-center py-2 text-sm font-semibold flex items-center justify-center gap-3 relative z-50">
+        <span>⚡ Limited Time Offer: Save 10% on Game Servers</span>
+        <button class="bg-white text-blue-600 px-3 py-0.5 rounded text-xs uppercase tracking-wider font-bold hover:bg-opacity-90 transition">Welcome</button>
+    </div>
+
+    <nav class="w-full border-b border-gray-800 bg-darkBg/80 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <img src="https://i.ibb.co/KzF67sFZ/copilot-image-1761965106943.png" alt="CoreMMC Logo" class="h-10 w-auto object-contain">
+                <span class="text-xl font-extrabold tracking-tight bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">CoreMMC<span class="text-blue-500">Host</span></span>
+            </div>
+
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
+                <a href="#" class="hover:text-blue-500 transition flex items-center gap-1.5"><i class="fa-solid fa-gamepad text-xs text-blue-500"></i> Games</a>
+                <a href="#" class="hover:text-blue-500 transition flex items-center gap-1.5"><i class="fa-solid fa-cloud text-xs text-blue-500"></i> Cloud</a>
+                <a href="#" class="hover:text-blue-500 transition flex items-center gap-1.5"><i class="fa-solid fa-server text-xs text-blue-500"></i> Dedicated</a>
+                <a href="#" class="hover:text-blue-500 transition flex items-center gap-1.5"><i class="fa-brands fa-discord text-xs text-blue-500"></i> Discord Bot</a>
+                <a href="#" class="hover:text-blue-500 transition flex items-center gap-1.5"><i class="fa-solid fa-globe text-xs text-blue-500"></i> WebHosting</a>
+                <a href="#" class="hover:text-blue-500 transition flex items-center gap-1.5"><i class="fa-solid fa-scale-balanced text-xs text-blue-500"></i> Legal</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <div class="flex items-center gap-1 text-sm border border-gray-800 bg-gray-900/50 px-2 py-1 rounded cursor-pointer">
+                    <span class="flag-icon">🇺🇸</span>
+                    <i class="fa-solid fa-chevron-down text-[10px] text-gray-400"></i>
+                </div>
+                <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-5 py-2.5 rounded-lg text-sm flex items-center gap-2 transition glow-effect shadow-blue-500/20">
+                    <i class="fa-solid fa-user-shield"></i> CLIENT SPACE
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative min-h-[85vh] flex items-center justify-center bg-gradient-to-b from-darkBg via-cardBg/30 to-darkBg px-4 overflow-hidden">
+        <div class="absolute top-0 right-1/4 w-32 h-20 opacity-30 flex gap-2">
+            <div class="icicle h-16"></div><div class="icicle h-10"></div><div class="icicle h-24"></div>
+        </div>
+
+        <div class="absolute inset-0 opacity-10 pointer-events-none flex justify-center items-center">
+            <i class="fa-solid fa-mask text-[40rem] text-blue-500 blur-sm"></i>
+        </div>
+
+        <div class="max-w-5xl mx-auto text-center relative z-10 py-12">
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight mb-6 leading-tight">
+                Host your own <br>
+                <span id="rotating-text" class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 neon-text-glow transition-all duration-500">CS:GO Servers</span>
+            </h1>
+            <p class="text-gray-400 text-lg sm:text-xl max-w-2xl mx-auto mb-10 font-light">
+                Experience lightning-fast performance, unbeatable reliability, and 24/7 support for all your favorite games.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <button class="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-4 rounded-xl flex items-center justify-center gap-2 transition transform hover:-translate-y-0.5 glow-effect">
+                    Get started <i class="fa-solid fa-arrow-right text-sm"></i>
+                </button>
+                <button class="w-full sm:w-auto bg-gray-900/80 hover:bg-gray-800 text-gray-300 border border-gray-800 font-semibold px-8 py-4 rounded-xl flex items-center justify-center gap-2 transition">
+                    Learn More <i class="fa-solid fa-arrow-up-right-from-square text-xs text-gray-500"></i>
+                </button>
+            </div>
+            <p class="text-xs text-gray-500 mt-4"><i class="fa-solid fa-circle-check text-green-500 mr-1"></i> Get started for free!</p>
+        </div>
+    </header>
+
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
+        <div class="bg-cardBg/60 border border-gray-800/80 p-6 rounded-2xl relative overflow-hidden group hover:border-blue-500/50 transition">
+            <div class="text-blue-500 text-3xl mb-4"><i class="fa-solid fa-bolt-lightning"></i></div>
+            <h3 class="text-lg font-bold mb-2">Instant Setup</h3>
+            <p class="text-sm text-gray-400 leading-relaxed">Get your server running in under 60 seconds automatically.</p>
+        </div>
+        <div class="bg-cardBg/60 border border-gray-800/80 p-6 rounded-2xl relative overflow-hidden group hover:border-blue-500/50 transition">
+            <div class="text-blue-500 text-3xl mb-4"><i class="fa-solid fa-shield-halved"></i></div>
+            <h3 class="text-lg font-bold mb-2">DDoS Protection</h3>
+            <p class="text-sm text-gray-400 leading-relaxed">Enterprise-grade security shield operational for your servers 24/7.</p>
+        </div>
+        <div class="bg-cardBg/60 border border-gray-800/80 p-6 rounded-2xl relative overflow-hidden group hover:border-blue-500/50 transition">
+            <div class="text-blue-500 text-3xl mb-4"><i class="fa-solid fa-chart-line"></i></div>
+            <h3 class="text-lg font-bold mb-2">99.9% Uptime</h3>
+            <p class="text-sm text-gray-400 leading-relaxed">Reliable high performance web & node infrastructure with guaranteed hardware availability.</p>
+        </div>
+        <div class="bg-cardBg/60 border border-gray-800/80 p-6 rounded-2xl relative overflow-hidden group hover:border-blue-500/50 transition">
+            <div class="absolute top-0 right-4 text-cyan-400 text-2xl opacity-40 animate-pulse"><i class="fa-solid fa-snowflake"></i></div>
+            <div class="text-blue-500 text-3xl mb-4"><i class="fa-solid fa-headset"></i></div>
+            <h3 class="text-lg font-bold mb-2">24/7 Support</h3>
+            <p class="text-sm text-gray-400 leading-relaxed">Expert help whenever you need it from our dedicated tech team.</p>
+        </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-gray-900/60">
+        <div class="text-center mb-12">
+            <span class="text-xs uppercase font-extrabold tracking-widest text-blue-500">We Won't Disappoint</span>
+            <h2 class="text-3xl font-black mt-2">Advanced <span class="text-blue-500">Features</span></h2>
+            <p class="text-sm text-gray-400 mt-1">Everything you need for professional game server hosting</p>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-center gap-12 mb-16 opacity-40 grayscale hover:grayscale-0 transition-all duration-300">
+            <span class="text-xl font-black tracking-wider font-mono">intel.</span>
+            <span class="text-xl font-bold italic tracking-wide">Pterodactyl</span>
+            <span class="text-xl font-semibold tracking-widest">NEOPROTECT</span>
+            <span class="text-xl font-bold tracking-tight">SAMSUNG</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="bg-cardBg/30 p-6 border border-gray-900 rounded-xl">
+                <div class="text-blue-500 mb-3"><i class="fa-solid fa-microchip"></i></div>
+                <h4 class="font-bold mb-1">High Performance</h4>
+                <p class="text-xs text-gray-400">Powered by latest generation processors for max performance.</p>
+            </div>
+            <div class="bg-cardBg/30 p-6 border border-gray-900 rounded-xl">
+                <div class="text-blue-500 mb-3"><i class="fa-solid fa-network-wired"></i></div>
+                <h4 class="font-bold mb-1">Low Latency</h4>
+                <p class="text-xs text-gray-400">Optimized network infrastructure for minimal lag and delay.</p>
+            </div>
+            <div class="bg-cardBg/30 p-6 border border-gray-900 rounded-xl">
+                <div class="text-blue-500 mb-3"><i class="fa-solid fa-lock"></i></div>
+                <h4 class="font-bold mb-1">Advanced Security</h4>
+                <p class="text-xs text-gray-400">Multi-layered security protocols to keep data isolated and protected.</p>
+            </div>
+            <div class="bg-cardBg/30 p-6 border border-gray-900 rounded-xl">
+                <div class="text-blue-500 mb-3"><i class="fa-solid fa-earth-americas"></i></div>
+                <h4 class="font-bold mb-1">Global Network</h4>
+                <p class="text-xs text-gray-400">Worldwide server nodes for premium optimal connectivity.</p>
+            </div>
+            <div class="bg-cardBg/30 p-6 border border-gray-900 rounded-xl">
+                <div class="text-blue-500 mb-3"><i class="fa-solid fa-rotate"></i></div>
+                <h4 class="font-bold mb-1">Auto Recovery</h4>
+                <p class="text-xs text-gray-400">Automatic node backup and server rescue systems integrated.</p>
+            </div>
+            <div class="bg-cardBg/30 p-6 border border-gray-900 rounded-xl">
+                <div class="text-blue-500 mb-3"><i class="fa-solid fa-sliders"></i></div>
+                <h4 class="font-bold mb-1">Full Control</h4>
+                <p class="text-xs text-gray-400">Complete control dashboard with easy advanced config tools.</p>
+            </div>
+            <div class="bg-cardBg/30 p-6 border border-gray-900 rounded-xl">
+                <div class="text-blue-500 mb-3"><i class="fa-solid fa-cubes"></i></div>
+                <h4 class="font-bold mb-1">Resource Scaling</h4>
+                <p class="text-xs text-gray-400">Dynamically scale your memory allocation on server demand instantly.</p>
+            </div>
+            <div class="bg-cardBg/30 p-6 border border-gray-900 rounded-xl">
+                <div class="text-blue-500 mb-3"><i class="fa-solid fa-database"></i></div>
+                <h4 class="font-bold mb-1">Fast Storage</h4>
+                <p class="text-xs text-gray-400">Enterprise NVMe storage drives for blazing fast data rendering.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2 class="text-3xl sm:text-4xl font-black tracking-tight leading-tight mb-4">
+                    Global Presence,<br><span class="text-blue-500">Local Performance</span>
+                </h2>
+                <p class="text-gray-400 text-sm leading-relaxed mb-8">
+                    Our rapidly expanding datacenter network spans across the Americas and Europe, delivering ultra-low latency from anywhere and lightning-fast connections wherever you play.
+                </p>
+                
+                <div class="grid grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="text-xs uppercase font-extrabold text-blue-500 tracking-wider mb-3">Europe</h4>
+                        <div class="flex items-center gap-2 text-sm text-gray-300 bg-cardBg/40 border border-gray-900 p-3 rounded-xl">
+                            <span>🇳🇱</span> <span>Amsterdam <span class="text-xs text-gray-500 block">EU West</span></span>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="text-xs uppercase font-extrabold text-blue-500 tracking-wider mb-3">Americas</h4>
+                        <div class="space-y-2">
+                            <div class="flex items-center gap-2 text-sm text-gray-300 bg-cardBg/40 border border-gray-900 p-2.5 rounded-xl">
+                                <span>🇺🇸</span> <span>Chicago, IL <span class="text-xs text-gray-500 block">US Central</span></span>
+                            </div>
+                            <div class="flex items-center gap-2 text-sm text-gray-300 bg-cardBg/40 border border-gray-900 p-2.5 rounded-xl">
+                                <span>🇺🇸</span> <span>Dallas, TX <span class="text-xs text-gray-500 block">US South</span></span>
+                            </div>
+                            <div class="flex items-center gap-2 text-sm text-gray-300 bg-cardBg/40 border border-gray-900 p-2.5 rounded-xl">
+                                <span>🇺🇸</span> <span>Seattle, WA <span class="text-xs text-gray-500 block">US West</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative flex justify-center items-center opacity-60">
+                <i class="fa-solid fa-earth-asia text-[18rem] text-blue-900/30 blur-[2px]"></i>
+                <div class="absolute top-1/4 left-1/4 w-3 h-3 bg-blue-500 rounded-full animate-ping"></div>
+                <div class="absolute top-1/3 left-1/2 w-3 h-3 bg-cyan-400 rounded-full animate-ping"></div>
+                <div class="absolute top-1/2 left-1/3 w-3 h-3 bg-indigo-500 rounded-full animate-ping"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-gray-900/60">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-black">Simple Pricing <span class="text-blue-500">Plans</span></h2>
+            <p class="text-sm text-gray-400 mt-1">Choose the perfect plan for your needs. All plans include our core features with no hidden fees.</p>
+            
+            <div class="inline-flex items-center bg-cardBg border border-gray-900 p-1 rounded-lg mt-6 text-xs text-gray-400 font-semibold">
+                <span class="px-3 py-1.5 bg-blue-600 text-white rounded-md cursor-pointer">$ USD</span>
+                <span class="px-3 py-1.5 cursor-pointer hover:text-white">€ EUR</span>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+            <div class="bg-cardBg border border-gray-800 p-6 rounded-2xl flex flex-col justify-between">
+                <div>
+                    <h3 class="text-xl font-bold mb-1">Game Servers</h3>
+                    <p class="text-xs text-gray-400 mb-6">High-performance game hosting for popular multiplayer nodes.</p>
+                    <div class="mb-6">
+                        <span class="text-xs text-gray-500">Starting at</span>
+                        <div class="text-3xl font-black text-white">$4.99<span class="text-sm text-gray-500 font-normal">/month</span></div>
+                    </div>
+                    <ul class="space-y-3 text-xs text-gray-300 border-t border-gray-900 pt-4">
+                        <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> Instant deployment</li>
+                        <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> DDoS protection included</li>
+                        <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> 24/7 Premium Support</li>
+                        <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> Custom configuration access</li>
+                        <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> Mod support ready</li>
+                    </ul>
+                </div>
+                <button class="w-full mt-8 bg-gray-900/80 border border-gray-800 hover:border-blue-500 py-3 rounded-xl font-bold text-sm transition">View More</button>
+            </div>
+
+            <div class="bg-cardBg border-2 border-blue-600 p-6 rounded-2xl flex flex-col justify-between relative glow-effect">
+                <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white text-[10px] uppercase font-black tracking-widest px-3 py-1 rounded-full">POPULAR</div>
+                <div>
+                    <h3 class="text-xl font-bold mb-1">VPS Hosting</h3>
+                    <p class="text-xs text-gray-400 mb-6">Scalable virtual private servers crafted for custom application layers.</p>
+                    <div class="mb-6">
+                        <span class="text-xs text-gray-500">Starting at</span>
+                        <div class="text-3xl font-black text-white">$9.99<span class="text-sm text-gray-500 font-normal">/month</span></div>
+                    </div>
+                    <ul class="space-y-3 text-xs text-gray-300 border-t border-gray-900 pt-4">
+                        <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> Full root access authority</li>
+                        <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> Pure NVMe SSD storage architecture</li>
+                        <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> 99.9% uptime validation</li>
+                        <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> Multiple OS configurations options</li>
+                        <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> Automatic backup recovery vault</li>
+                    </ul>
+                </div>
+                <button class="w-full mt-8 bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-bold text-sm transition">Order Now</button>
+            </div>
+
+            <div class="bg-cardBg border border-gray-800 p-6 rounded-2xl flex flex-col justify-between">
+                <div>
+                    <h3 class="text-xl font-bold mb-1">Dedicated Servers</h3>
+                    <p class="text-xs text-gray-400 mb-6">Enterprise-grade dedicated hardware for mission-critical apps.</p>
+                    <div class="mb-6">
+                        <span class="text-xs text-gray-500">Starting at</span>
+                        <div class="text-3xl font-black text-white">$99.99<span class="text-sm text-gray-500 font-normal">/month</span></div>
+                    </div>
+                    <ul class="space-y-3 text-xs text-gray-300 border-t border-gray-900 pt-4">
+                        <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> Bare metal unshared performance</li>
+                        <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> Full custom hardware provisioning</li>
+                        <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> Enterprise SLA agreement tier</li>
+                        <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> Advanced mitigation hardware firewall</li>
+                        <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> Fully Managed network services options</li>
+                    </ul>
+                </div>
+                <button class="w-full mt-8 bg-gray-900/80 border border-gray-800 hover:border-blue-500 py-3 rounded-xl font-bold text-sm transition">Get a Quote</button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+            <div class="bg-cardBg/60 border border-gray-900 p-6 rounded-2xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <div>
+                    <h4 class="text-lg font-bold">Web Hosting</h4>
+                    <p class="text-xs text-gray-400 mt-1">Professional web hosting with premium speeds and 24/7 support framework.</p>
+                    <div class="text-xl font-extrabold text-white mt-2">$2.99<span class="text-xs font-normal text-gray-500">/mo</span></div>
+                </div>
+                <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-5 py-2.5 rounded-xl text-xs transition whitespace-nowrap">Order Now</button>
+            </div>
+            <div class="bg-cardBg/60 border border-gray-900 p-6 rounded-2xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <div>
+                    <h4 class="text-lg font-bold">Discord Bot Hosting</h4>
+                    <p class="text-xs text-gray-400 mt-1">Reliable always-online JS/Python Node bot deployment containers.</p>
+                    <div class="text-xl font-extrabold text-white mt-2">$2.99<span class="text-xs font-normal text-gray-500">/mo</span></div>
+                </div>
+                <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-5 py-2.5 rounded-xl text-xs transition whitespace-nowrap">Order Now</button>
+            </div>
+        </div>
+
+        <div class="text-center mt-8 text-xs text-gray-500">
+            Need a custom solution? <a href="#" class="text-blue-500 hover:underline">Contact our sales team</a>
+        </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            <div class="bg-gradient-to-br from-blue-900/20 to-cardBg border border-gray-900 p-8 rounded-3xl flex flex-col items-center justify-center text-center relative overflow-hidden min-h-[300px]">
+                <div class="absolute top-4 left-4 text-cyan-400 text-xl opacity-30"><i class="fa-solid fa-cube"></i></div>
+                <div class="w-24 h-24 bg-gradient-to-tr from-blue-600 to-cyan-400 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-500/30 mb-6 relative">
+                    <i class="fa-solid fa-robot text-4xl text-white"></i>
+                    <div class="absolute -bottom-2 -right-2 bg-yellow-500 text-darkBg text-[10px] font-black px-1.5 py-0.5 rounded">MOD</div>
+                </div>
+                <h3 class="text-xl font-extrabold mb-1">Got Questions?</h3>
+                <p class="text-xs text-gray-400 max-w-xs">Find answers to common questions about our premium server networks.</p>
+            </div>
+
+            <div class="lg:col-span-2 space-y-4">
+                <div class="text-left mb-6">
+                    <h2 class="text-3xl font-black">Frequently Asked <span class="text-blue-500">Questions</span></h2>
+                </div>
+
+                <div class="bg-cardBg/40 border border-gray-900 rounded-xl p-4 cursor-pointer hover:border-gray-800 transition">
+                    <div class="flex items-center justify-between font-bold text-sm">
+                        <span>01. How do I get started with game server hosting?</span>
+                        <i class="fa-solid fa-chevron-down text-gray-500 text-xs"></i>
+                    </div>
+                </div>
+                <div class="bg-cardBg/40 border border-gray-900 rounded-xl p-4 cursor-pointer hover:border-gray-800 transition">
+                    <div class="flex items-center justify-between font-bold text-sm">
+                        <span>02. What kind of support infrastructure do you provide?</span>
+                        <i class="fa-solid fa-chevron-down text-gray-500 text-xs"></i>
+                    </div>
+                </div>
+                <div class="bg-cardBg/40 border border-gray-900 rounded-xl p-4 cursor-pointer hover:border-gray-800 transition">
+                    <div class="flex items-center justify-between font-bold text-sm">
+                        <span>03. Can I modify internal configuration and mod scripts?</span>
+                        <i class="fa-solid fa-chevron-down text-gray-500 text-xs"></i>
+                    </div>
+                </div>
+                <div class="bg-cardBg/40 border border-gray-900 rounded-xl p-4 cursor-pointer hover:border-gray-800 transition">
+                    <div class="flex items-center justify-between font-bold text-sm">
+                        <span>04. What payment gateway methods do you accept globally?</span>
+                        <i class="fa-solid fa-chevron-down text-gray-500 text-xs"></i>
+                    </div>
+                </div>
+                <div class="bg-cardBg/40 border border-gray-900 rounded-xl p-4 cursor-pointer hover:border-gray-800 transition">
+                    <div class="flex items-center justify-between font-bold text-sm">
+                        <span>05. Do you offer real DDoS attack protection filters?</span>
+                        <i class="fa-solid fa-chevron-down text-gray-500 text-xs"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-gray-900/60">
+        <div class="text-left mb-10">
+            <span class="text-xs uppercase font-extrabold tracking-widest text-blue-500">Our Panel Control Hub</span>
+            <h2 class="text-3xl font-black mt-1">Experience Our <span class="text-blue-500">Platform</span></h2>
+            <p class="text-sm text-gray-400">Discover the powerful features that make our node system the perfect automation tool.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <div class="lg:col-span-4 space-y-3" id="panel-tabs-list">
+                <button onclick="switchPanelTab('shell')" id="tab-shell" class="panel-tab-btn w-full text-left p-4 rounded-xl border border-blue-600 bg-blue-600/10 flex items-center justify-between transition">
+                    <div>
+                        <h4 class="font-bold text-sm text-white">Shell Access</h4>
+                        <p class="text-xs text-gray-400 mt-1">Manage core terminal directly via our embedded custom shell layer tool.</p>
+                    </div>
+                    <i class="fa-solid fa-terminal text-blue-400 text-sm"></i>
+                </button>
+                <button onclick="switchPanelTab('plugin')" id="tab-plugin" class="panel-tab-btn w-full text-left p-4 rounded-xl border border-gray-900 bg-cardBg/20 flex items-center justify-between transition hover:border-gray-800">
+                    <div>
+                        <h4 class="font-bold text-sm text-gray-300">Plugin Manager</h4>
+                        <p class="text-xs text-gray-500 mt-1">Install multiple minecraft game node setups within one single click deployment.</p>
+                    </div>
+                    <i class="fa-solid fa-puzzle-piece text-gray-500 text-sm"></i>
+                </button>
+                <button onclick="switchPanelTab('mod')" id="tab-mod" class="panel-tab-btn w-full text-left p-4 rounded-xl border border-gray-900 bg-cardBg/20 flex items-center justify-between transition hover:border-gray-800">
+                    <div>
+                        <h4 class="font-bold text-sm text-gray-300">Mod Manager</h4>
+                        <p class="text-xs text-gray-500 mt-1">Inject automation scripts or game mode extensions without core failure risk.</p>
+                    </div>
+                    <i class="fa-solid fa-folder-tree text-gray-500 text-sm"></i>
+                </button>
+                <button onclick="switchPanelTab('analytics')" id="tab-analytics" class="panel-tab-btn w-full text-left p-4 rounded-xl border border-gray-900 bg-cardBg/20 flex items-center justify-between transition hover:border-gray-800">
+                    <div>
+                        <h4 class="font-bold text-sm text-gray-300">Analytics</h4>
+                        <p class="text-xs text-gray-500 mt-1">Track memory usage metrics and core CPU load distributions charts.</p>
+                    </div>
+                    <i class="fa-solid fa-chart-pie text-gray-500 text-sm"></i>
+                </button>
+            </div>
+
+            <div class="lg:col-span-8 bg-[#090d1f] border border-gray-800 rounded-2xl p-6 shadow-2xl relative min-h-[380px]">
+                <div class="flex items-center justify-between pb-4 border-b border-gray-800 text-xs text-gray-400 mb-4">
+                    <div class="flex items-center gap-2">
+                        <span class="w-3 h-3 bg-red-500 rounded-full inline-block"></span>
+                        <span class="w-3 h-3 bg-yellow-500 rounded-full inline-block"></span>
+                        <span class="w-3 h-3 bg-green-500 rounded-full inline-block"></span>
+                        <span class="ml-2 font-mono text-gray-400 text-[11px] bg-darkBg px-2 py-1 rounded">Minecraft Server Control Node #1</span>
+                    </div>
+                    <div class="flex items-center gap-1.5 font-bold">
+                        <span class="bg-green-500/10 text-green-500 px-2 py-0.5 rounded text-[10px]">● RUNNING</span>
+                        <span class="bg-gray-800 text-white px-2 py-0.5 rounded cursor-pointer hover:bg-gray-700">Restart</span>
+                    </div>
+                </div>
+
+                <div id="content-shell" class="panel-content-block font-mono text-xs text-emerald-400 space-y-1.5 bg-black/40 p-4 rounded-xl overflow-y-auto max-h-[280px]">
+                    <p class="text-gray-500">[CoreMMC Daemon]: Initializing safe handshakes with proxy routing lines...</p>
+                    <p class="text-gray-500">[CoreMMC Daemon]: Fetching active instance profiles dependencies...</p>
+                    <p class="text-blue-400">root@coremmc-node1:~# service server status</p>
+                    <p>● minecraft-server.service - Minecraft Node Sandbox Container</p>
+                    <p>&nbsp;&nbsp;&nbsp;Loaded: active (running) since Thu 2026-06-11; 4h operating space allocation</p>
+                    <p>&nbsp;&nbsp;&nbsp;Main PID: 84920 (java)</p>
+                    <p class="text-yellow-400">[JVM Engine]: Allocating heap allocation sizes map to 16384MB limits...</p>
+                    <p class="text-blue-400">root@coremmc-node1:~# <span class="animate-pulse">_</span></p>
+                </div>
+
+                <div id="content-plugin" class="panel-content-block hidden space-y-3">
+                    <div class="flex items-center justify-between text-xs bg-darkBg/60 p-3 rounded-xl border border-gray-900">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-puzzle-piece text-blue-500 text-lg"></i>
+                            <div><span class="font-bold block text-sm">EssentialsX Core</span><span class="text-gray-500">v2.20.1 - Base utility commands layer mod</span></div>
+                        </div>
+                        <button class="bg-green-600 text-white font-bold px-3 py-1 rounded text-[11px]">Installed</button>
+                    </div>
+                    <div class="flex items-center justify-between text-xs bg-darkBg/60 p-3 rounded-xl border border-gray-900">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-shield-halved text-blue-500 text-lg"></i>
+                            <div><span class="font-bold block text-sm">WorldGuard Protection</span><span class="text-gray-500">v7.0.8 - Advanced region zone flag lock script</span></div>
+                        </div>
+                        <button class="bg-blue-600 text-white font-bold px-3 py-1 rounded text-[11px]">Update</button>
+                    </div>
+                    <div class="flex items-center justify-between text-xs bg-darkBg/60 p-3 rounded-xl border border-gray-900">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-wand-sparkles text-blue-500 text-lg"></i>
+                            <div><span class="font-bold block text-sm">WorldEdit Script Engine</span><span class="text-gray-500">v7.2.14 - Spatial canvas building block utility</span></div>
+                        </div>
+                        <button class="bg-gray-800 text-gray-400 font-bold px-3 py-1 rounded text-[11px]">Install Plugin</button>
+                    </div>
+                </div>
+
+                <div id="content-mod" class="panel-content-block hidden space-y-3">
+                    <h5 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Available Modpack Core Profiles</h5>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-darkBg/60 p-3 rounded-xl border border-gray-900 flex items-center justify-between">
+                            <span class="text-xs font-bold font-mono">Forge Engine Server Node</span>
+                            <input type="radio" name="modpack" checked class="accent-blue-500">
+                        </div>
+                        <div class="bg-darkBg/60 p-3 rounded-xl border border-gray-900 flex items-center justify-between">
+                            <span class="text-xs font-bold font-mono">Fabric Core Sandbox Loader</span>
+                            <input type="radio" name="modpack" class="accent-blue-500">
+                        </div>
+                    </div>
+                    <p class="text-[11px] text-gray-500 mt-4"><i class="fa-solid fa-triangle-exclamation text-yellow-500 mr-1"></i> Swapping core engines triggers standard node data compression procedures automatically.</p>
+                </div>
+
+                <div id="content-analytics" class="panel-content-block hidden space-y-4">
+                    <div class="grid grid-cols-3 gap-4 text-center">
+                        <div class="bg-darkBg p-3 rounded-xl border border-gray-900">
+                            <span class="text-[10px] text-gray-500 block uppercase font-bold">CPU ALLOCATION</span>
+                            <span class="text-lg font-black text-blue-400">42.8 %</span>
+                        </div>
+                        <div class="bg-darkBg p-3 rounded-xl border border-gray-900">
+                            <span class="text-[10px] text-gray-500 block uppercase font-bold">MEMORY COMMITTED</span>
+                            <span class="text-lg font-black text-cyan-400">6.4 GB / 16 GB</span>
+                        </div>
+                        <div class="bg-darkBg p-3 rounded-xl border border-gray-900">
+                            <span class="text-[10px] text-gray-500 block uppercase font-bold">NETWORK BANDWIDTH OUT</span>
+                            <span class="text-lg font-black text-indigo-400">14.2 Mbps</span>
+                        </div>
+                    </div>
+                    <div class="bg-darkBg/50 p-4 rounded-xl border border-gray-900 h-32 flex items-end gap-1 pt-6">
+                        <div class="w-full bg-blue-600/30 h-1/2 rounded-t"></div>
+                        <div class="w-full bg-blue-600/40 h-2/3 rounded-t"></div>
+                        <div class="w-full bg-blue-600/60 h-3/4 rounded-t"></div>
+                        <div class="w-full bg-blue-600/80 h-1/2 rounded-t"></div>
+                        <div class="w-full bg-cyan-500/90 h-5/6 rounded-t animate-pulse"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
+        <div class="bg-gradient-to-r from-blue-700 via-indigo-800 to-blue-900 rounded-3xl p-8 sm:p-12 flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden glow-effect shadow-indigo-600/20">
+            <div class="absolute right-0 opacity-10 pointer-events-none transform translate-x-12 translate-y-6">
+                <i class="fa-brands fa-discord text-[18rem]"></i>
+            </div>
+            
+            <div class="relative z-10 max-w-xl text-center md:text-left">
+                <h2 class="text-3xl sm:text-4xl font-black text-white tracking-tight">Join Our <span class="text-cyan-300">Discord</span></h2>
+                <p class="text-sm text-blue-100 mt-2">Connect with our vast community of specialized gamers, bot developers and mod engineers. Get instant automated server status notifications, support assistance logs, and community special perks.</p>
+            </div>
+
+            <a href="#" class="relative z-10 bg-white text-indigo-900 font-extrabold px-8 py-4 rounded-xl shadow-lg hover:bg-opacity-95 transition flex items-center gap-3 whitespace-nowrap text-sm">
+                <i class="fa-brands fa-discord text-lg text-indigo-600"></i> JOIN US ON DISCORD
+            </a>
+        </div>
+    </section>
+
+    <footer class="bg-[#03050d] border-t border-gray-900/80 text-xs text-gray-400 mt-16 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-1 md:grid-cols-4 gap-10">
+            <div class="space-y-4">
+                <div class="flex items-center gap-2">
+                    <img src="https://i.ibb.co/KzF67sFZ/copilot-image-1761965106943.png" alt="CoreMMC Logo" class="h-8 w-auto">
+                    <span class="text-lg font-black tracking-tight text-white">CoreMMC<span class="text-blue-500">Host</span></span>
+                </div>
+                <p class="leading-relaxed text-gray-500 text-[11px]">
+                    Premium hosting solutions engineered meticulously for scaling gamers, bot node operators and enterprise sandbox developers. Unleash premium network power allocations with our high performance backend infrastructure panels.
+                </p>
+                <div class="text-gray-600 text-[10px]">Made by <span class="text-gray-400 font-bold">CoreMMC Dev Team</span></div>
+            </div>
+
+            <div>
+                <h5 class="text-xs uppercase font-extrabold tracking-wider text-white mb-4">Quick Links</h5>
+                <ul class="space-y-2.5 font-medium">
+                    <li><a href="#" class="hover:text-blue-500 transition">Client Area Portal</a></li>
+                    <li><a href="#" class="hover:text-blue-500 transition">Discord Support Hub</a></li>
+                    <li><a href="#" class="hover:text-blue-500 transition">VPS Server Hosting Plans</a></li>
+                    <li><a href="#" class="hover:text-blue-500 transition">Dedicated Bare Metal Nodes</a></li>
+                    <li><a href="#" class="hover:text-blue-500 transition">Game Server Matrix Suite</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h5 class="text-xs uppercase font-extrabold tracking-wider text-white mb-4">Legal</h5>
+                <ul class="space-y-2.5 font-medium">
+                    <li><a href="#" class="hover:text-blue-500 transition">Terms of Service Agreements</a></li>
+                    <li><a href="#" class="hover:text-blue-500 transition">Privacy Protection Policy</a></li>
+                    <li><a href="#" class="hover:text-blue-500 transition">SLA Guarantee Framework</a></li>
+                    <li><a href="#" class="hover:text-blue-500 transition">Refund Infrastructure Guidelines</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h5 class="text-xs uppercase font-extrabold tracking-wider text-white mb-4">Contact Us</h5>
+                <ul class="space-y-3">
+                    <li class="flex items-center gap-2.5">
+                        <i class="fa-solid fa-envelope text-blue-500 text-sm"></i>
+                        <div><span class="text-gray-600 block text-[10px] uppercase font-bold">EMAIL ADDRESS</span><span class="text-gray-300">support@coremmc.com</span></div>
+                    </li>
+                    <li class="flex items-center gap-2.5">
+                        <i class="fa-solid fa-phone text-blue-500 text-sm"></i>
+                        <div><span class="text-gray-600 block text-[10px] uppercase font-bold">PHONE SUPPORT</span><span class="text-gray-300">N/A (Discord Ticket Only)</span></div>
+                    </li>
+                    <li class="flex items-center gap-2.5">
+                        <i class="fa-solid fa-gamepad text-blue-500 text-sm"></i>
+                        <div><span class="text-gray-600 block text-[10px] uppercase font-bold">GAME CONTROL HUB</span><span class="text-blue-400 underline cursor-pointer">panel.coremmc.com</span></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 border-t border-gray-900/50 flex flex-col sm:flex-row items-center justify-between gap-4 text-gray-600 text-[11px]">
+            <p>&copy; 2026 CoreMMC Hosting. All rights reserved globally across all node zones.</p>
+            <div class="flex gap-4 text-sm opacity-50">
+                <i class="fa-brands fa-x-twitter hover:text-white cursor-pointer"></i>
+                <i class="fa-brands fa-github hover:text-white cursor-pointer"></i>
+                <i class="fa-brands fa-youtube hover:text-white cursor-pointer"></i>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 1. HERO TEXT ROTATION CONTROLLER (Mimics the video intro text swap)
+        const textsToRotate = [
+            "CS:GO Servers", 
+            "Minecraft Servers", 
+            "NodeJS Apps", 
+            "Discord Bot Nodes"
+        ];
+        let currentTextIndex = 0;
+        const rotatingTextElement = document.getElementById("rotating-text");
+
+        setInterval(() => {
+            currentTextIndex = (currentTextIndex + 1) % textsToRotate.length;
+            rotatingTextElement.style.opacity = 0;
+            setTimeout(() => {
+                rotatingTextElement.textContent = textsToRotate[currentTextIndex];
+                rotatingTextElement.style.opacity = 1;
+            }, 300);
+        }, 3000);
+
+        // 2. INTERACTIVE SUB-PANEL TABS MANAGER (0:27 - 0:43)
+        function switchPanelTab(targetTabId) {
+            // Hide all container viewports
+            document.querySelectorAll(".panel-content-block").forEach(block => {
+                block.classList.add("hidden");
+            });
+            // Show target container viewport
+            document.getElementById("content-" + targetTabId).classList.remove("hidden");
+
+            // Reset all clickable button profiles style
+            document.querySelectorAll(".panel-tab-btn").forEach(btn => {
+                btn.classList.remove("border-blue-600", "bg-blue-600/10");
+                btn.classList.add("border-gray-900", "bg-cardBg/20");
+                
+                // Dim header text indicators inside inactive buttons
+                const titleText = btn.querySelector("h4");
+                if(titleText) { titleText.classList.remove("text-white"); titleText.classList.add("text-gray-300"); }
+                const icon = btn.querySelector("i");
+                if(icon) { icon.classList.remove("text-blue-400"); icon.classList.add("text-gray-500"); }
+            });
+
+            // Activate specific selected target trigger button styling
+            const activeBtn = document.getElementById("tab-" + targetTabId);
+            activeBtn.classList.remove("border-gray-900", "bg-cardBg/20");
+            activeBtn.classList.add("border-blue-600", "bg-blue-600/10");
+            
+            const activeTitle = activeBtn.querySelector("h4");
+            if(activeTitle) { activeTitle.classList.remove("text-gray-300"); activeTitle.textList = "text-white"; activeTitle.classList.add("text-white"); }
+            const activeIcon = activeBtn.querySelector("i");
+            if(activeIcon) { activeIcon.classList.remove("text-gray-500"); activeIcon.classList.add("text-blue-400"); }
+        }
+
+        // 3. SNOW PARTICLES GENERATOR ENGINE (Simulates the video background atmospheric rendering particles)
+        const particleContainer = document.getElementById("particle-container");
+        const particleCount = 40;
+
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement("div");
+            particle.classList.add("particle");
+            
+            // Randomize spatial attributes
+            const size = Math.random() * 4 + 2; 
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            
+            particle.style.left = `${Math.random() * 100}vw`;
+            particle.style.top = `${Math.random() * 100 + 10}vh`;
+            
+            // Randomize animation timelines speeds variables
+            const duration = Math.random() * 8 + 6;
+            particle.style.animationDuration = `${duration}s`;
+            particle.style.animationDelay = `${Math.random() * -12}s`;
+            
+            particleContainer.appendChild(particle);
+        }
+    </script>
+</body>
+</html>
