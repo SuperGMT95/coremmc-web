@@ -1094,6 +1094,324 @@
 </section>
 
     <!-- =========================================================================
+     COREMMC HOSTING INTERACTIVE FAQ SECTION WITH EXACT IMAGE LINK
+     ========================================================================= -->
+<style>
+    /* Main FAQ Section Wrapper */
+    .faq-section-wrapper {
+        padding: 80px 8%;
+        background-color: #070913;
+        color: #ffffff;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    /* Core Layout: Left Image Area, Right Accordion Area */
+    .faq-grid-layout {
+        display: grid;
+        grid-template-columns: 0.8fr 1.2fr;
+        gap: 50px;
+        align-items: center;
+    }
+
+    /* Left Side Vector Illustration Container */
+    .faq-left-vector {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .faq-left-vector img {
+        width: 100%;
+        max-width: 380px;
+        height: auto;
+        animation: smoothFloatFAQ 4s ease-in-out infinite;
+    }
+
+    /* Right Side Heading Typography */
+    .faq-right-content .faq-header-block {
+        margin-bottom: 35px;
+    }
+
+    .faq-right-content .faq-header-block h2 {
+        font-size: 40px;
+        font-weight: 800;
+        margin: 0 0 10px 0;
+        letter-spacing: 0.5px;
+    }
+
+    .faq-right-content .faq-header-block h2 span {
+        color: #38bdf8;
+    }
+
+    .faq-right-content .faq-header-block p {
+        color: #94a3b8;
+        font-size: 15px;
+        margin: 0;
+    }
+
+    /* Accordion Main Structure */
+    .faq-accordion-container {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    /* Individual FAQ Item Style matching reference "Screenshot 2026-06-11 135152_2.png" */
+    .faq-item-block {
+        background: rgba(15, 23, 42, 0.35);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 12px;
+        overflow: hidden;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .faq-item-block:hover {
+        border-color: rgba(56, 189, 248, 0.3);
+    }
+
+    /* Active Open Accordion State styling */
+    .faq-item-block.active-faq {
+        border-color: rgba(37, 99, 235, 0.5);
+        background: rgba(15, 23, 42, 0.55);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Trigger Button Wrapper */
+    .faq-trigger-btn {
+        width: 100%;
+        background: transparent;
+        border: none;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+        text-align: left;
+        color: #ffffff;
+        gap: 15px;
+    }
+
+    /* Left Row: Index number box + Title text */
+    .faq-title-row {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    /* Serial Number Badge Style */
+    .faq-index-badge {
+        font-family: monospace;
+        font-size: 14px;
+        font-weight: 700;
+        color: #2563eb;
+        background: rgba(37, 99, 235, 0.1);
+        border: 1px solid rgba(37, 99, 235, 0.2);
+        padding: 4px 8px;
+        border-radius: 6px;
+        min-width: 28px;
+        text-align: center;
+    }
+
+    .faq-trigger-btn h4 {
+        font-size: 16px;
+        font-weight: 600;
+        margin: 0;
+        letter-spacing: 0.3px;
+        transition: color 0.3s ease;
+    }
+
+    .faq-item-block.active-faq .faq-trigger-btn h4 {
+        color: #38bdf8;
+    }
+
+    /* Right Side Arrow Icon element */
+    .faq-arrow-icon {
+        color: #94a3b8;
+        font-size: 14px;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .faq-item-block.active-faq .faq-arrow-icon {
+        transform: rotate(90deg); /* Arrow rotates downwards when active */
+        color: #38bdf8;
+    }
+
+    /* Collapsible Content Area (Hidden by default with animation tracking) */
+    .faq-body-panel {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .faq-inner-text {
+        padding: 0 20px 20px 63px; /* Properly aligns answer text under the question */
+        color: #cbd5e1;
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    /* Soft floating animation loop */
+    @keyframes smoothFloatFAQ {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+        100% { transform: translateY(0px); }
+    }
+
+    /* Responsive Engine */
+    @media (max-width: 992px) {
+        .faq-grid-layout {
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+        .faq-left-vector {
+            order: -1; /* Puts image on top for mobile views */
+        }
+        .faq-left-vector img {
+            max-width: 280px;
+        }
+    }
+</style>
+
+<section class="faq-section-wrapper">
+    <div class="faq-grid-layout">
+        
+        <!-- Left Side: Custom Vector Artwork URL Provided -->
+        <div class="faq-left-vector">
+            <img src="https://votex-root.netlify.app/_next/image?url=%2Ffeature-9.webp&w=1920&q=75" alt="CoreMMC Help Support Vector">
+        </div>
+
+        <!-- Right Side: Interactive Content -->
+        <div class="faq-right-content">
+            <div class="faq-header-block">
+                <h2>Frequently Asked <span>Questions</span></h2>
+                <p>Find answers to common questions about our game server hosting services</p>
+            </div>
+
+            <div class="faq-accordion-container">
+
+                <!-- Question 01 -->
+                <div class="faq-item-block">
+                    <button class="faq-trigger-btn">
+                        <div class="faq-title-row">
+                            <span class="faq-index-badge">01</span>
+                            <h4>How do I get started with game server hosting?</h4>
+                        </div>
+                        <i class="fa-solid fa-chevron-right faq-arrow-icon"></i>
+                    </button>
+                    <div class="faq-body-panel">
+                        <div class="faq-inner-text">
+                            Getting started with CoreMMC Hosting is incredibly quick! Choose your preferred game server configuration or hosting plan from our pricing tables, complete the secure checkout process, and our automated provisioning system will instantly build and deploy your instance. You will receive an onboarding email containing access credentials to your dedicated game control panel immediately.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 02 -->
+                <div class="faq-item-block">
+                    <button class="faq-trigger-btn">
+                        <div class="faq-title-row">
+                            <span class="faq-index-badge">02</span>
+                            <h4>What kind of support do you provide?</h4>
+                        </div>
+                        <i class="fa-solid fa-chevron-right faq-arrow-icon"></i>
+                    </button>
+                    <div class="faq-body-panel">
+                        <div class="faq-inner-text">
+                            CoreMMC (Thakur MMC) Hosting delivers elite 24/7 technical assistance. Our specialized support crew is fully equipped to handle configuration bugs, server performance tune-ups, and deployment queries. You can easily reach out to us by opening a direct ticket inside our secure client portal dashboard or joining our active community Discord server for rapid assistance.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 03 -->
+                <div class="faq-item-block">
+                    <button class="faq-trigger-btn">
+                        <div class="faq-title-row">
+                            <span class="faq-index-badge">03</span>
+                            <h4>Can I modify server settings and configurations?</h4>
+                        </div>
+                        <i class="fa-solid fa-chevron-right faq-arrow-icon"></i>
+                    </button>
+                    <div class="faq-body-panel">
+                        <div class="faq-inner-text">
+                            Absolutely! You maintain 100% full root access and complete control file oversight through our custom management workspace panel. You are free to modify backend settings, install custom mods or plugins, handle sub-user permissions, upload directory files via secure SFTP, and customize the game dynamics exactly the way your community wants.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 04 -->
+                <div class="faq-item-block">
+                    <button class="faq-trigger-btn">
+                        <div class="faq-title-row">
+                            <span class="faq-index-badge">04</span>
+                            <h4>What payment methods do you accept?</h4>
+                        </div>
+                        <i class="fa-solid fa-chevron-right faq-arrow-icon"></i>
+                    </button>
+                    <div class="faq-body-panel">
+                        <div class="faq-inner-text">
+                            We accept an extensive range of reliable payment methods to keep your renewals completely frictionless. You can pay securely using all major Credit Cards, Debit Cards, PayPal, UPI, Net Banking, and regional localized gateways, providing you with a safe and encrypted transaction layer.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 05 -->
+                <div class="faq-item-block">
+                    <button class="faq-trigger-btn">
+                        <div class="faq-title-row">
+                            <span class="faq-index-badge">05</span>
+                            <h4>Do you offer DDoS protection?</h4>
+                        </div>
+                        <i class="fa-solid fa-chevron-right faq-arrow-icon"></i>
+                    </button>
+                    <div class="faq-body-panel">
+                        <div class="faq-inner-text">
+                            Yes, security is a core standard. Every node deployed under CoreMMC Hosting infrastructure comes integrated with advanced multi-layered enterprise DDoS mitigation filters. Our systems actively intercept, scan, and filter malicious traffic surges automatically before they ever hit your game instance, guaranteeing a persistent 99.9% uptime and zero server-side disruption.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- =========================================================================
+     JAVASCRIPT ACCORDION LOGIC ENGINE 
+     ========================================================================= -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const faqItems = document.querySelectorAll(".faq-item-block");
+
+        faqItems.forEach(item => {
+            const triggerBtn = item.querySelector(".faq-trigger-btn");
+            const bodyPanel = item.querySelector(".faq-body-panel");
+
+            triggerBtn.addEventListener("click", function () {
+                const isOpen = item.classList.contains("active-faq");
+
+                // Close all other open FAQ items first (Accordion Mode)
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove("active-faq");
+                        otherItem.querySelector(".faq-body-panel").style.maxHeight = null;
+                    }
+                });
+
+                // Toggle current item state
+                if (isOpen) {
+                    item.classList.remove("active-faq");
+                    bodyPanel.style.maxHeight = null;
+                } else {
+                    item.classList.add("active-faq");
+                    // Calculates dynamic inner content height for a beautiful fluid sliding animation
+                    bodyPanel.style.maxHeight = bodyPanel.scrollHeight + "px";
+                }
+            });
+        });
+    });
+</script>
+
+    <!-- =========================================================================
      EXACT PREMIUM DISCORD BANNER SECTION WITH FLOATING MASCOTS
      ========================================================================= -->
 <style>
