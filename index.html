@@ -1093,6 +1093,249 @@
     </div>
 </section>
 
+    <!-- =========================================================================
+     EXACT PREMIUM DISCORD BANNER SECTION WITH FLOATING MASCOTS
+     ========================================================================= -->
+<style>
+    /* Main Section Container spacing */
+    .discord-banner-wrapper {
+        padding: 40px 8%;
+        background-color: #070913;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    /* Core Banner Design Mapping reference "Screenshot 2026-06-11 132102.png" */
+    .discord-core-card {
+        position: relative;
+        width: 100%;
+        background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%) !important; /* Premium Blue Core Tone */
+        border-radius: 16px !important;
+        padding: 45px 50px !important;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        overflow: hidden;
+        z-index: 1;
+        text-decoration: none !important; /* Pure card clickable behavior setup */
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 10px 30px rgba(29, 78, 216, 0.25);
+    }
+
+    .discord-core-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 15px 40px rgba(29, 78, 216, 0.4);
+    }
+
+    /* Left Side Elements Configuration */
+    .discord-left-layout {
+        display: flex;
+        align-items: flex-start;
+        gap: 25px;
+        max-width: 65%;
+        z-index: 3;
+    }
+
+    /* Left Floating Small Mascot */
+    .mascot-left-mini {
+        width: 75px;
+        height: auto;
+        object-fit: contain;
+        animation: miniFloat 3s ease-in-out infinite;
+        filter: drop-shadow(0 8px 16px rgba(0,0,0,0.3));
+    }
+
+    /* Left Side Content Typography */
+    .discord-text-block h2 {
+        font-size: 42px !important;
+        font-weight: 800 !important;
+        color: #ffffff !important;
+        margin: 0 0 15px 0 !important;
+        letter-spacing: 0.5px;
+    }
+
+    .discord-text-block h2 span {
+        color: #38bdf8 !important; /* Cyan pop text style */
+    }
+
+    .discord-text-block p {
+        color: rgba(255, 255, 255, 0.85) !important;
+        font-size: 16px !important;
+        line-height: 1.5 !important;
+        margin: 0 0 6px 0 !important;
+        font-weight: 500;
+    }
+
+    .discord-text-block span.sub-info {
+        color: rgba(255, 255, 255, 0.65) !important;
+        font-size: 14px !important;
+        display: block;
+    }
+
+    /* Right Side Elements Configuration */
+    .discord-right-layout {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        z-index: 3;
+    }
+
+    /* Join Us Interactive Button Logo Badge */
+    .discord-join-badge {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background: rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        padding: 14px 24px;
+        border-radius: 12px;
+        transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .discord-join-badge img.discord-logo-vector {
+        width: 32px;
+        height: auto;
+    }
+
+    .discord-join-badge .badge-texts {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .discord-join-badge .badge-texts span:first-child {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .discord-join-badge .badge-texts span:last-child {
+        color: #ffffff;
+        font-size: 20px;
+        font-weight: 800;
+        letter-spacing: 0.5px;
+    }
+
+    .discord-core-card:hover .discord-join-badge {
+        background: rgba(0, 0, 0, 0.35);
+        transform: scale(1.03);
+    }
+
+    /* Right Side Big Headphone Mascot */
+    .mascot-right-big {
+        width: 140px;
+        height: auto;
+        object-fit: contain;
+        margin-bottom: -45px; /* Cards line border cutting effect like reference */
+        align-self: flex-end;
+        animation: bigFloat 4s ease-in-out infinite;
+        filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+    }
+
+    /* Faded Watermark Logos scattered in background */
+    .discord-core-card::before {
+        content: '';
+        position: absolute;
+        top: 15px;
+        left: 20px;
+        width: 60px;
+        height: 60px;
+        background: url('https://i.ibb.co/B2Tg6dwy/photo-2026-06-11-13-42-40.jpg') no-repeat center/contain;
+        opacity: 0.08;
+        pointer-events: none;
+    }
+
+    .discord-core-card::after {
+        content: '';
+        position: absolute;
+        bottom: 15px;
+        left: 45%;
+        width: 70px;
+        height: 70px;
+        background: url('https://i.ibb.co/B2Tg6dwy/photo-2026-06-11-13-42-40.jpg') no-repeat center/contain;
+        opacity: 0.06;
+        pointer-events: none;
+    }
+
+    /* Animations Vectors Loops */
+    @keyframes miniFloat {
+        0% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-6px) rotate(3deg); }
+        100% { transform: translateY(0px) rotate(0deg); }
+    }
+
+    @keyframes bigFloat {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-8px); }
+        100% { transform: translateY(0px); }
+    }
+
+    /* Fully Responsive Optimization for Mobile viewports */
+    @media (max-width: 992px) {
+        .discord-core-card {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 35px;
+            padding: 40px 30px !important;
+        }
+        .discord-left-layout {
+            flex-direction: column;
+            align-items: center;
+            max-width: 100%;
+            gap: 15px;
+        }
+        .discord-right-layout {
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+        }
+        .mascot-right-big {
+            margin-bottom: -40px;
+            align-self: center;
+            width: 110px;
+        }
+    }
+</style>
+
+<!-- Functional DOM Grid Architecture Injection -->
+<section class="discord-banner-wrapper">
+    <a href="https://discord.gg/VFK39KWNC" target="_blank" class="discord-core-card">
+        
+        <!-- Left Section Panel -->
+        <div class="discord-left-layout">
+            <!-- First Mascot Image Link Applied to Left Side -->
+            <img src="https://i.ibb.co/4ny7LS0k/photo-2026-06-11-13-43-57.jpg" alt="Discord Small Mascot" class="mascot-left-mini">
+            
+            <div class="discord-text-block">
+                <h2>Join Our <span>Discord</span></h2>
+                <p>Connect with our community of gamers and developers</p>
+                <span class="sub-info">Get instant support, share experiences, and stay updated with the latest news</span>
+            </div>
+        </div>
+
+        <!-- Right Section Panel -->
+        <div class="discord-right-layout">
+            <!-- Center Vector Badge Integration Box -->
+            <div class="discord-join-badge">
+                <img src="https://i.ibb.co/B2Tg6dwy/photo-2026-06-11-13-42-40.jpg" alt="Discord Logo" class="discord-logo-vector">
+                <div class="badge-texts">
+                    <span>Join Us On</span>
+                    <span>DISCORD</span>
+                </div>
+            </div>
+
+            <!-- Third Headphone Mascot Image Link Applied to Right Bottom Side -->
+            <img src="https://i.ibb.co/sd32wMvg/photo-2026-06-11-13-46-39.jpg" alt="Discord Big Mascot" class="mascot-right-big">
+        </div>
+
+    </a>
+</section>
+        
     <!-- -------------------------------- FOOTER -------------------------------- -->
     <footer>
         <div class="footer-grid">
