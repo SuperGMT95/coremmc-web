@@ -645,14 +645,30 @@
     </section>
 
     <!-- -------------------------------- BRANDS LOGO BAR -------------------------------- -->
-    <section class="brands-section">
-        <span style="font-size: 13px; color: var(--text-muted);">POWERED BY GLOBAL HARDWARE</span>
-        <!-- Dummy placeholder path for hardware logos similar to video -->
-        <strong style="letter-spacing: 3px; font-size: 18px;">INTEL</strong>
-        <strong style="letter-spacing: 3px; font-size: 18px;">AMD RYZEN</strong>
-        <strong style="letter-spacing: 3px; font-size: 18px;">PTERODACTYL</strong>
-        <strong style="letter-spacing: 3px; font-size: 18px;">NVME SSD</strong>
-    </section>
+   <!-- INFINITE SLIDER COMPONENT (Exactly as running in your video) -->
+<div class="partner-slider-section">
+    <div class="slider-infinite-track">
+        
+        <!-- Track Set 1 -->
+        <div class="slider-item-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Brand Logo"></div>
+        <div class="slider-item-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Brand Logo"></div>
+        <div class="slider-item-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Intel-logo.svg" alt="Intel"></div>
+        <div class="slider-item-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Meta-Logo.svg" alt="Brand Logo"></div>
+        <div class="slider-item-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Advanced_Micro_Devices_Logo.svg" alt="AMD"></div>
+        <div class="slider-item-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e9/Notion-logo.svg" alt="Brand Logo"></div>
+        <div class="slider-item-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/0/01/Linux_Logo.glassy.svg" alt="Brand Logo"></div>
+
+        <!-- Track Set 2 (Exact duplication to achieve unnoticeable infinite loop transition) -->
+        <div class="slider-item-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Brand Logo"></div>
+        <div class="slider-item-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Brand Logo"></div>
+        <div class="slider-item-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Intel-logo.svg" alt="Intel"></div>
+        <div class="slider-item-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Meta-Logo.svg" alt="Brand Logo"></div>
+        <div class="slider-item-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Advanced_Micro_Devices_Logo.svg" alt="AMD"></div>
+        <div class="slider-item-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e9/Notion-logo.svg" alt="Brand Logo"></div>
+        <div class="slider-item-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/0/01/Linux_Logo.glassy.svg" alt="Brand Logo"></div>
+
+    </div>
+</div>
 
     <!-- ------------------------ ADVANCED FEATURES SECTION ------------------------ -->
    <!-- =========================================================================
@@ -2863,79 +2879,7 @@
         .hero-left-content h1 { font-size: 38px !important; }
     }
 </style>
-
-<!-- HERO COMPONENT DOM MAP -->
-<div class="hero-premium-container">
     
-    <!-- LEFT PANEL: CONTENT & INTERACTIVE BUTTONS -->
-    <div class="hero-left-content">
-        <h1>Host your own <br><span>Minecraft Servers</span></h1>
-        <p>High-performance hosting powered by Gen4 NVMe storage, high-frequency CPUs, and enterprise-grade WarShield DDoS protection.</p>
-        
-        <div class="hero-btn-group">
-            <div class="get-started-wrapper">
-                <!-- Red Mark Cloud Left -->
-                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3hsYjkxc2QweGRzNnlydWpmZmJvczdyeTBqMHNkNWVjdTNucXFmMyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/V4ErRLRQG2lfKOjIht/giphy.gif" class="cloud-sticker stk-btn-tl anim-float-v1" alt="cloud">
-                
-                <a href="#" class="btn-get-started">Get started &rarr;</a>
-                
-                <!-- Red Mark Cloud Right -->
-                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3hsYjkxc2QweGRzNnlydWpmZmJvczdyeTBqMHNkNWVjdTNucXFmMyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/0NjFWM1boB1gX6D2S0/giphy.gif" class="cloud-sticker stk-btn-br anim-float-v2" alt="cloud">
-            </div>
-            <a href="#" class="btn-learn-more">Learn More &rarr;</a>
-        </div>
-    </div>
-
-    <!-- RIGHT PANEL: 2x2 FEATURE CARDS MATRIX -->
-    <div class="hero-cards-grid">
-        
-        <!-- CARD 1 -->
-        <div class="feature-card">
-            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3hsYjkxc2QweGRzNnlydWpmZmJvczdyeTBqMHNkNWVjdTNucXFmMyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/V4ErRLRQG2lfKOjIht/giphy.gif" class="cloud-sticker stk-tl anim-float-v1" alt="cloud">
-            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3hsYjkxc2QweGRzNnlydWpmZmJvczdyeTBqMHNkNWVjdTNucXFmMyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/0NjFWM1boB1gX6D2S0/giphy.gif" class="cloud-sticker stk-br anim-float-v2" alt="cloud">
-            <div class="card-header-row">
-                <h3>Instant Setup</h3>
-                <span class="card-icon">⚡</span>
-            </div>
-            <p>Get your server running in under 60 seconds automatically.</p>
-        </div>
-
-        <!-- CARD 2 -->
-        <div class="feature-card">
-            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3hsYjkxc2QweGRzNnlydWpmZmJvczdyeTBqMHNkNWVjdTNucXFmMyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/V4ErRLRQG2lfKOjIht/giphy.gif" class="cloud-sticker stk-tl anim-float-v2" alt="cloud">
-            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3hsYjkxc2QweGRzNnlydWpmZmJvczdyeTBqMHNkNWVjdTNucXFmMyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/0NjFWM1boB1gX6D2S0/giphy.gif" class="cloud-sticker stk-br anim-float-v1" alt="cloud">
-            <div class="card-header-row">
-                <h3>DDoS Protection</h3>
-                <span class="card-icon">🛡️</span>
-            </div>
-            <p>WarShield Protection Enterprise shield active.</p>
-        </div>
-
-        <!-- CARD 3 -->
-        <div class="feature-card">
-            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3hsYjkxc2QweGRzNnlydWpmZmJvczdyeTBqMHNkNWVjdTNucXFmMyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/V4ErRLRQG2lfKOjIht/giphy.gif" class="cloud-sticker stk-tl anim-float-v1" alt="cloud">
-            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3hsYjkxc2QweGRzNnlydWpmZmJvczdyeTBqMHNkNWVjdTNucXFmMyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/0NjFWM1boB1gX6D2S0/giphy.gif" class="cloud-sticker stk-br anim-float-v2" alt="cloud">
-            <div class="card-header-row">
-                <h3>99.9% Uptime</h3>
-                <span class="card-icon">📈</span>
-            </div>
-            <p>Reliable hosting setup with hardware availability.</p>
-        </div>
-
-        <!-- CARD 4 -->
-        <div class="feature-card">
-            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3hsYjkxc2QweGRzNnlydWpmZmJvczdyeTBqMHNkNWVjdTNucXFmMyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/V4ErRLRQG2lfKOjIht/giphy.gif" class="cloud-sticker stk-tl anim-float-v2" alt="cloud">
-            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3hsYjkxc2QweGRzNnlydWpmZmJvczdyeTBqMHNkNWVjdTNucXFmMyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/0NjFWM1boB1gX6D2S0/giphy.gif" class="cloud-sticker stk-br anim-float-v1" alt="cloud">
-            <div class="card-header-row">
-                <h3>24/7 Support</h3>
-                <span class="card-icon">🎧</span>
-            </div>
-            <p>Expert help team whenever you need it around the clock.</p>
-        </div>
-
-    </div>
-</div>
-
 <!-- INFINITE SLIDER COMPONENT (Exactly as running in your video) -->
 <div class="partner-slider-section">
     <div class="slider-infinite-track">
