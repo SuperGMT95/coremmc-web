@@ -2309,5 +2309,170 @@
     </div>
 </div>
 </script>
+    <style>
+    /* =========================================================================
+       GLOBAL CSS STYLING ENGINE FOR HEADERS & STICKERS
+       ========================================================================= --> */
+
+    /* Main section container to enforce absolute alignment */
+    .custom-premium-header-section {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 50px 0;
+        background: transparent;
+        text-align: center;
+        box-sizing: border-box;
+    }
+
+    /* Flexbox wrapper keeping stickers and texts locked in perfect symmetry */
+    .premium-header-wrapper {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 35px; /* Distance between text and stickers */
+        max-width: 95%;
+    }
+
+    /* Central Text styling configuration */
+    .header-text-block {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    /* Small top taglines styling matching your design theme */
+    .premium-sub-tag {
+        color: #2563eb !important; /* Vibrant Blue color */
+        font-size: 13px !important;
+        font-weight: 700 !important;
+        letter-spacing: 2px !important;
+        text-transform: uppercase !important;
+        margin-bottom: 10px !important;
+        font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    /* Main Heading Title typography */
+    .premium-main-title {
+        font-size: 42px !important;
+        font-weight: 800 !important;
+        color: #ffffff !important;
+        margin: 0 !important;
+        line-height: 1.2 !important;
+        letter-spacing: -0.5px !important;
+        font-family: system-ui, -apple-system, sans-serif;
+        white-space: nowrap;
+    }
+
+    /* Sky Blue accent highlight color */
+    .premium-main-title span {
+        color: #38bdf8 !important;
+    }
+
+    /* Base properties for all stickers */
+    .header-sticker {
+        height: auto;
+        pointer-events: none;
+        user-select: none;
+        display: block;
+    }
+
+    /* Individual setup for Cloud Stickers (Left Side) */
+    .header-sticker.cloud-left {
+        width: 75px;
+        animation: premiumCloudWobble 4s ease-in-out infinite;
+        filter: drop-shadow(0 8px 16px rgba(56, 189, 248, 0.25));
+    }
+
+    /* Individual setup for Show Stars Stickers (Right Side) */
+    .header-sticker.show-right {
+        width: 70px;
+        animation: premiumStarFloat 3.5s ease-in-out infinite;
+        filter: drop-shadow(0 8px 16px rgba(37, 99, 235, 0.3));
+    }
+
+    /* =========================================================================
+       KINETIC ANIMATION KEYFRAMES (Khoob Acche Waale Animations)
+       ========================================================================= */
+
+    /* Smooth drifting floating motion for clouds */
+    @keyframes premiumCloudWobble {
+        0% {
+            transform: translateY(0px) rotate(0deg);
+        }
+        50% {
+            transform: translateY(-12px) rotate(-3deg);
+        }
+        100% {
+            transform: translateY(0px) rotate(0deg);
+        }
+    }
+
+    /* Rhythmic pulse and lift motion for stars */
+    @keyframes premiumStarFloat {
+        0% {
+            transform: translateY(0px) scale(1);
+        }
+        50% {
+            transform: translateY(-15px) scale(1.06) rotate(6deg);
+        }
+        100% {
+            transform: translateY(0px) scale(1);
+        }
+    }
+
+    /* Responsive adjustment layer for mobile displays */
+    @media (max-width: 768px) {
+        .premium-header-wrapper {
+            gap: 15px;
+        }
+        .premium-main-title {
+            font-size: 28px !important;
+            white-space: normal !important; /* Wrap line smoothly on tiny screens */
+        }
+        .header-sticker.cloud-left {
+            width: 45px;
+        }
+        .header-sticker.show-right {
+            width: 42px;
+        }
+    }
+</style>
+
+
+<div class="custom-premium-header-section">
+    <div class="premium-header-wrapper">
+        
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3hsYjkxc2QweGRzNnlydWpmZmJvczdyeTBqMHNkNWVjdTNucXFmMyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/V4ErRLRQG2lfKOjIht/giphy.gif" class="header-sticker cloud-left" alt="Cloud">
+        
+        <div class="header-text-block">
+            <span class="premium-sub-tag">WE WON'T DISAPPOINT</span>
+            <h2 class="premium-main-title">Advanced <span>Features</span></h2>
+        </div>
+        
+        <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExMXVjMWptYmh5bm1xbmpuZGs1YmVubjFncXpvaDlzMjJrZDc1aW0ydCZlcD12MV9internalF9naWZfYnlfaWQmY3Q9cw/H1YGuEsxFy10JPPdah/giphy.gif" class="header-sticker show-right" alt="Star Show">
+        
+    </div>
+</div>
+
+
+<div class="custom-premium-header-section">
+    <div class="premium-header-wrapper">
+        
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3hsYjkxc2QweGRzNnlydWpmZmJvczdyeTBqMHNkNWVjdTNucXFmMyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/0NjFWM1boB1gX6D2S0/giphy.gif" class="header-sticker cloud-left" alt="Cloud 2">
+        
+        <div class="header-text-block">
+            <span class="premium-sub-tag">AFFORDABLE PACKAGES</span>
+            <h2 class="premium-main-title">CoreMMC Hosting <span>Plans</span></h2>
+        </div>
+        
+        <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExMXVjMWptYmh5bm1xbmpuZGs1YmVubjFncXpvaDlzMjJrZDc1aW0ydCZlcD12MV9internalF9naWZfYnlfaWQmY3Q9cw/H1YGuEsxFy10JPPdah/giphy.gif" class="header-sticker show-right" alt="Star Show 2">
+        
+    </div>
+</div>
+</script>
 </body>
 </html>
