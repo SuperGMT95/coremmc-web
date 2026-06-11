@@ -2288,172 +2288,136 @@
         }
     }
 </style>
-
 </script>
     <style>
-    /* =========================================================================
-       GLOBAL CSS STYLING ENGINE FOR HEADERS & STICKERS
-       ========================================================================= --> */
-
-    /* Main section container to enforce absolute alignment */
-    .custom-premium-header-section {
+    /* Global resetting just to ensure layout precision */
+    .custom-premium-nav {
         width: 100%;
+        background-color: #070913;
+        padding: 20px 8%;
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
-        padding: 50px 0;
-        background: transparent;
-        text-align: center;
         box-sizing: border-box;
-    }
-
-    /* Flexbox wrapper keeping stickers and texts locked in perfect symmetry */
-    .premium-header-wrapper {
-        position: relative;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 35px; /* Distance between text and stickers */
-        max-width: 95%;
-    }
-
-    /* Central Text styling configuration */
-    .header-text-block {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
-    /* Small top taglines styling matching your design theme */
-    .premium-sub-tag {
-        color: #2563eb !important; /* Vibrant Blue color */
-        font-size: 13px !important;
-        font-weight: 700 !important;
-        letter-spacing: 2px !important;
-        text-transform: uppercase !important;
-        margin-bottom: 10px !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         font-family: system-ui, -apple-system, sans-serif;
     }
 
-    /* Main Heading Title typography */
-    .premium-main-title {
-        font-size: 42px !important;
+    /* ----------------------------------------------------
+       LEFT SIDE: LOGO TEXT WRAPPER + STICKER
+       ---------------------------------------------------- */
+    .nav-logo-block {
+        display: flex;
+        align-items: center;
+        gap: 12px; /* Space for the sticker */
+        text-decoration: none !important;
+        position: relative;
+    }
+
+    .nav-logo-text {
+        font-size: 26px !important;
         font-weight: 800 !important;
         color: #ffffff !important;
+        letter-spacing: -0.5px;
         margin: 0 !important;
-        line-height: 1.2 !important;
-        letter-spacing: -0.5px !important;
-        font-family: system-ui, -apple-system, sans-serif;
-        white-space: nowrap;
     }
 
-    /* Sky Blue accent highlight color */
-    .premium-main-title span {
-        color: #38bdf8 !important;
+    .nav-logo-text span {
+        color: #38bdf8 !important; /* Sky Blue accent color */
     }
 
-    /* Base properties for all stickers */
-    .header-sticker {
+    /* Logo Side: Cloud Sticker [2] Configuration */
+    .nav-logo-sticker {
+        width: 42px; /* Small clean navbar fit size */
         height: auto;
         pointer-events: none;
         user-select: none;
-        display: block;
+        animation: navStickerFloat 3s ease-in-out infinite;
+        filter: drop-shadow(0 4px 8px rgba(56, 189, 248, 0.25));
     }
 
-    /* Individual setup for Cloud Stickers (Left Side) */
-    .header-sticker.cloud-left {
-        width: 75px;
-        animation: premiumCloudWobble 4s ease-in-out infinite;
-        filter: drop-shadow(0 8px 16px rgba(56, 189, 248, 0.25));
+    /* ----------------------------------------------------
+       RIGHT SIDE: CLIENT AREA BUTTON + STICKER
+       ---------------------------------------------------- */
+    .nav-right-block {
+        display: flex;
+        align-items: center;
+        gap: 15px; /* Distance between button and star sticker */
+        position: relative;
     }
 
-    /* Individual setup for Show Stars Stickers (Right Side) */
-    .header-sticker.show-right {
-        width: 70px;
-        animation: premiumStarFloat 3.5s ease-in-out infinite;
-        filter: drop-shadow(0 8px 16px rgba(37, 99, 235, 0.3));
+    /* Premium Client Area Button Styling */
+    .nav-client-btn {
+        background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
+        color: #ffffff !important;
+        padding: 10px 22px !important;
+        border-radius: 8px !important;
+        font-size: 14px !important;
+        font-weight: 700 !important;
+        text-decoration: none !important;
+        letter-spacing: 0.5px;
+        box-shadow: 0 4px 15px rgba(37, 99, 235, 0.2);
+        transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+        display: inline-flex;
+        align-items: center;
     }
 
-    /* =========================================================================
-       KINETIC ANIMATION KEYFRAMES (Khoob Acche Waale Animations)
-       ========================================================================= */
-
-    /* Smooth drifting floating motion for clouds */
-    @keyframes premiumCloudWobble {
-        0% {
-            transform: translateY(0px) rotate(0deg);
-        }
-        50% {
-            transform: translateY(-12px) rotate(-3deg);
-        }
-        100% {
-            transform: translateY(0px) rotate(0deg);
-        }
+    .nav-client-btn:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 6px 20px rgba(37, 99, 235, 0.35);
     }
 
-    /* Rhythmic pulse and lift motion for stars */
-    @keyframes premiumStarFloat {
-        0% {
-            transform: translateY(0px) scale(1);
-        }
-        50% {
-            transform: translateY(-15px) scale(1.06) rotate(6deg);
-        }
-        100% {
-            transform: translateY(0px) scale(1);
-        }
+    /* Client Area Side: Show Star Sticker [1] Configuration */
+    .nav-client-sticker {
+        width: 38px; /* Perfectly scaled star badge */
+        height: auto;
+        pointer-events: none;
+        user-select: none;
+        animation: navStarWobble 3.5s ease-in-out infinite;
+        filter: drop-shadow(0 4px 10px rgba(37, 99, 235, 0.3));
     }
 
-    /* Responsive adjustment layer for mobile displays */
-    @media (max-width: 768px) {
-        .premium-header-wrapper {
-            gap: 15px;
+    /* ----------------------------------------------------
+       SMOOTH KINETIC ANIMATIONS FOR NAVBAR CONTEXT
+       ---------------------------------------------------- */
+    @keyframes navStickerFloat {
+        0% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-5px) rotate(-3deg); }
+        100% { transform: translateY(0px) rotate(0deg); }
+    }
+
+    @keyframes navStarWobble {
+        0% { transform: translateY(0px) scale(1); }
+        50% { transform: translateY(-6px) scale(1.05) rotate(5deg); }
+        100% { transform: translateY(0px) scale(1); }
+    }
+
+    /* Responsive scaling behavior for small screen devices */
+    @media (max-width: 600px) {
+        .custom-premium-nav {
+            padding: 15px 4%;
         }
-        .premium-main-title {
-            font-size: 28px !important;
-            white-space: normal !important; /* Wrap line smoothly on tiny screens */
-        }
-        .header-sticker.cloud-left {
-            width: 45px;
-        }
-        .header-sticker.show-right {
-            width: 42px;
-        }
+        .nav-logo-text { font-size: 22px !important; }
+        .nav-logo-sticker { width: 32px; }
+        .nav-client-sticker { width: 28px; }
+        .nav-client-btn { padding: 8px 16px !important; font-size: 13px !important; }
     }
 </style>
 
+<nav class="custom-premium-nav">
 
-<div class="custom-premium-header-section">
-    <div class="premium-header-wrapper">
+    <a href="#" class="nav-logo-block">
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3hsYjkxc2QweGRzNnlydWpmZmJvczdyeTBqMHNkNWVjdTNucXFmMyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/V4ErRLRQG2lfKOjIht/giphy.gif" class="nav-logo-sticker" alt="Logo Cloud Sticker">
+        <h1 class="nav-logo-text">Core<span>MMC</span></h1>
+    </a>
+
+    <div class="nav-right-block">
+        <a href="#" class="nav-client-btn">Client Area</a>
         
-        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3hsYjkxc2QweGRzNnlydWpmZmJvczdyeTBqMHNkNWVjdTNucXFmMyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/V4ErRLRQG2lfKOjIht/giphy.gif" class="header-sticker cloud-left" alt="Cloud">
-        
-        <div class="header-text-block">
-            <span class="premium-sub-tag">WE WON'T DISAPPOINT</span>
-            <h2 class="premium-main-title">Advanced <span>Features</span></h2>
-        </div>
-        
-        <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExMXVjMWptYmh5bm1xbmpuZGs1YmVubjFncXpvaDlzMjJrZDc1aW0ydCZlcD12MV9internalF9naWZfYnlfaWQmY3Q9cw/H1YGuEsxFy10JPPdah/giphy.gif" class="header-sticker show-right" alt="Star Show">
-        
+        <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExMXVjMWptYmh5bm1xbmpuZGs1YmVubjFncXpvaDlzMjJrZDc1aW0ydCZlcD12MV9internalF9naWZfYnlfaWQmY3Q9cw/H1YGuEsxFy10JPPdah/giphy.gif" class="nav-client-sticker" alt="Client Area Star Sticker">
     </div>
-</div>
 
-
-<div class="custom-premium-header-section">
-    <div class="premium-header-wrapper">
-        
-        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3hsYjkxc2QweGRzNnlydWpmZmJvczdyeTBqMHNkNWVjdTNucXFmMyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/0NjFWM1boB1gX6D2S0/giphy.gif" class="header-sticker cloud-left" alt="Cloud 2">
-        
-        <div class="header-text-block">
-            <span class="premium-sub-tag">AFFORDABLE PACKAGES</span>
-            <h2 class="premium-main-title">CoreMMC Hosting <span>Plans</span></h2>
-        </div>
-        
-        <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExMXVjMWptYmh5bm1xbmpuZGs1YmVubjFncXpvaDlzMjJrZDc1aW0ydCZlcD12MV9internalF9naWZfYnlfaWQmY3Q9cw/H1YGuEsxFy10JPPdah/giphy.gif" class="header-sticker show-right" alt="Star Show 2">
-        
-    </div>
-</div>
+</nav>
 </script>
 </body>
 </html>
