@@ -664,6 +664,165 @@
         </div>
     </section>
 
+<style>
+    /* 1. Global Network Section Structure */
+    .global-network-section {
+        padding: 60px 8%;
+        background-color: #070913;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+        align-items: center;
+        color: #ffffff;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* Left Side: Spinning Globe Layout */
+    .network-left-globe {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+    }
+
+    .network-left-globe img {
+        width: 100%;
+        max-width: 420px;
+        height: auto;
+        filter: drop-shadow(0 0 35px rgba(56, 189, 248, 0.3));
+        animation: smoothFloat 4s ease-in-out infinite;
+    }
+
+    /* Right Side: Text & Location Content */
+    .network-right-content .tagline {
+        color: #2563eb;
+        font-size: 14px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    .network-right-content h2 {
+        font-size: 38px;
+        font-weight: 800;
+        margin-bottom: 20px;
+        line-height: 1.2;
+    }
+
+    .network-right-content h2 span {
+        color: #38bdf8;
+    }
+
+    .network-right-content p {
+        color: #94a3b8;
+        font-size: 15px;
+        line-height: 1.6;
+        margin-bottom: 30px;
+    }
+
+    /* Locations Grid Badges */
+    .location-badges {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+
+    .badge-item {
+        background: rgba(15, 23, 42, 0.4);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        padding: 15px 20px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 600;
+        font-size: 15px;
+        transition: border-color 0.3s;
+    }
+
+    .badge-item:hover {
+        border-color: rgba(56, 189, 248, 0.4);
+    }
+
+    .badge-item i {
+        color: #38bdf8;
+        font-size: 16px;
+    }
+
+    /* Globe Floating Animation Effect */
+    @keyframes smoothFloat {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-12px); }
+        100% { transform: translateY(0px); }
+    }
+
+    /* 2. OVERRIDE: Pricing Cards Glass Transparent Blur (Kala rang hatane ke liye) */
+    .pricing-section {
+        background-color: transparent !important;
+    }
+
+    .price-card {
+        background-color: rgba(15, 23, 42, 0.35) !important;
+        border: 1px solid rgba(255, 255, 255, 0.12) !important;
+        backdrop-filter: blur(6px) !important;
+        -webkit-backdrop-filter: blur(6px) !important;
+    }
+
+    .price-card::before {
+        opacity: 0.55 !important;
+    }
+
+    .price-card:hover::before {
+        opacity: 0.75 !important;
+    }
+
+    .price-card::after {
+        background: linear-gradient(180deg, rgba(7, 9, 19, 0.1) 0%, rgba(7, 9, 19, 0.5) 100%) !important;
+    }
+
+    /* Responsive Support for Mobile and Tablets */
+    @media (max-width: 968px) {
+        .global-network-section {
+            grid-template-columns: 1fr;
+            text-align: center;
+            gap: 30px;
+            padding: 40px 4%;
+        }
+        .network-left-globe img {
+            max-width: 300px;
+        }
+        .location-badges {
+            grid-template-columns: 1fr;
+        }
+        .badge-item {
+            justify-content: center;
+        }
+    }
+</style>
+
+<section class="global-network-section">
+    
+    <div class="network-left-globe">
+        <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExYWZqZ28yMzZvZmF1aHZnZWY4N2djZHdiMDBiaHdodGQya2lmYWJlcyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/U4FkC2VqpeNRHjTDQ5/giphy.gif" alt="Global Network Globe">
+    </div>
+
+    <div class="network-right-content">
+        <span class="tagline">Global Infrastructure</span>
+        <h2>Worldwide <span>Server Nodes</span></h2>
+        <p>We host your services on extreme edge-network datacenters strategically placed across multiple countries. Enjoy lowest latency routing and unmatched speeds globally.</p>
+        
+        <div class="location-badges">
+            <div class="badge-item"><i class="fa-solid fa-location-dot"></i> North America (US West)</div>
+            <div class="badge-item"><i class="fa-solid fa-location-dot"></i> Europe (Germany)</div>
+            <div class="badge-item"><i class="fa-solid fa-location-dot"></i> United Kingdom (London)</div>
+            <div class="badge-item"><i class="fa-solid fa-location-dot"></i> Asia Pacific (Singapore)</div>
+        </div>
+    </div>
+
+</section>
+    
     <!-- ------------------------ PRICING PLANS SECTION ------------------------ -->
     <section class="section-wrapper" style="background: rgba(255,255,255,0.01);">
         <span class="tagline">Affordable Packages</span>
@@ -1399,165 +1558,6 @@
         z-index: -1 !important;
     }
 </style>
-    </script>
-        <style>
-    /* 1. Global Network Section Structure */
-    .global-network-section {
-        padding: 60px 8%;
-        background-color: #070913;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 50px;
-        align-items: center;
-        color: #ffffff;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    /* Left Side: Spinning Globe Layout */
-    .network-left-globe {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-    }
-
-    .network-left-globe img {
-        width: 100%;
-        max-width: 420px;
-        height: auto;
-        filter: drop-shadow(0 0 35px rgba(56, 189, 248, 0.3));
-        animation: smoothFloat 4s ease-in-out infinite;
-    }
-
-    /* Right Side: Text & Location Content */
-    .network-right-content .tagline {
-        color: #2563eb;
-        font-size: 14px;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        margin-bottom: 10px;
-        display: block;
-    }
-
-    .network-right-content h2 {
-        font-size: 38px;
-        font-weight: 800;
-        margin-bottom: 20px;
-        line-height: 1.2;
-    }
-
-    .network-right-content h2 span {
-        color: #38bdf8;
-    }
-
-    .network-right-content p {
-        color: #94a3b8;
-        font-size: 15px;
-        line-height: 1.6;
-        margin-bottom: 30px;
-    }
-
-    /* Locations Grid Badges */
-    .location-badges {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 15px;
-    }
-
-    .badge-item {
-        background: rgba(15, 23, 42, 0.4);
-        border: 1px solid rgba(255, 255, 255, 0.06);
-        padding: 15px 20px;
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        font-weight: 600;
-        font-size: 15px;
-        transition: border-color 0.3s;
-    }
-
-    .badge-item:hover {
-        border-color: rgba(56, 189, 248, 0.4);
-    }
-
-    .badge-item i {
-        color: #38bdf8;
-        font-size: 16px;
-    }
-
-    /* Globe Floating Animation Effect */
-    @keyframes smoothFloat {
-        0% { transform: translateY(0px); }
-        50% { transform: translateY(-12px); }
-        100% { transform: translateY(0px); }
-    }
-
-    /* 2. OVERRIDE: Pricing Cards Glass Transparent Blur (Kala rang hatane ke liye) */
-    .pricing-section {
-        background-color: transparent !important;
-    }
-
-    .price-card {
-        background-color: rgba(15, 23, 42, 0.35) !important;
-        border: 1px solid rgba(255, 255, 255, 0.12) !important;
-        backdrop-filter: blur(6px) !important;
-        -webkit-backdrop-filter: blur(6px) !important;
-    }
-
-    .price-card::before {
-        opacity: 0.55 !important;
-    }
-
-    .price-card:hover::before {
-        opacity: 0.75 !important;
-    }
-
-    .price-card::after {
-        background: linear-gradient(180deg, rgba(7, 9, 19, 0.1) 0%, rgba(7, 9, 19, 0.5) 100%) !important;
-    }
-
-    /* Responsive Support for Mobile and Tablets */
-    @media (max-width: 968px) {
-        .global-network-section {
-            grid-template-columns: 1fr;
-            text-align: center;
-            gap: 30px;
-            padding: 40px 4%;
-        }
-        .network-left-globe img {
-            max-width: 300px;
-        }
-        .location-badges {
-            grid-template-columns: 1fr;
-        }
-        .badge-item {
-            justify-content: center;
-        }
-    }
-</style>
-
-<section class="global-network-section">
-    
-    <div class="network-left-globe">
-        <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExYWZqZ28yMzZvZmF1aHZnZWY4N2djZHdiMDBiaHdodGQya2lmYWJlcyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/U4FkC2VqpeNRHjTDQ5/giphy.gif" alt="Global Network Globe">
-    </div>
-
-    <div class="network-right-content">
-        <span class="tagline">Global Infrastructure</span>
-        <h2>Worldwide <span>Server Nodes</span></h2>
-        <p>We host your services on extreme edge-network datacenters strategically placed across multiple countries. Enjoy lowest latency routing and unmatched speeds globally.</p>
-        
-        <div class="location-badges">
-            <div class="badge-item"><i class="fa-solid fa-location-dot"></i> North America (US West)</div>
-            <div class="badge-item"><i class="fa-solid fa-location-dot"></i> Europe (Germany)</div>
-            <div class="badge-item"><i class="fa-solid fa-location-dot"></i> United Kingdom (London)</div>
-            <div class="badge-item"><i class="fa-solid fa-location-dot"></i> Asia Pacific (Singapore)</div>
-        </div>
-    </div>
-
-</section>
     </script>
 </body>
 </html>
