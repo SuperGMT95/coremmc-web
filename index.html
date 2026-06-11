@@ -2639,6 +2639,327 @@
         .hero-left-content h1 { font-size: 36px !important; }
     }
 </style>
+    <!-- =========================================================================
+     MINECRAFT/WEB HOSTING HERO SECTION WITH INFINITE MOVING LOGO SLIDER
+     ========================================================================= -->
+
+<style>
+    /* Hero Section Background & Layout Configuration */
+    .hero-premium-container {
+        width: 100%;
+        background-color: #070913; /* Deep premium dark canvas */
+        padding: 80px 6% 40px 6%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 40px;
+        box-sizing: border-box;
+        font-family: system-ui, -apple-system, sans-serif;
+        color: #ffffff;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Left Content Typography Map */
+    .hero-left-content {
+        max-width: 50%;
+        position: relative;
+        z-index: 2;
+    }
+
+    .hero-left-content h1 {
+        font-size: 52px !important;
+        font-weight: 800 !important;
+        color: #ffffff !important;
+        line-height: 1.1 !important;
+        margin: 0 0 20px 0 !important;
+        letter-spacing: -1px;
+    }
+
+    .hero-left-content h1 span {
+        color: #38bdf8 !important; /* Premium Cyan Accent */
+        display: block;
+    }
+
+    .hero-left-content p {
+        color: #94a3b8;
+        font-size: 16px;
+        line-height: 1.6;
+        margin-bottom: 35px;
+        max-width: 90%;
+    }
+
+    /* Button Interfaces */
+    .hero-btn-group {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .get-started-wrapper {
+        position: relative;
+        display: inline-block;
+    }
+
+    .btn-get-started {
+        background: #2563eb;
+        color: #ffffff;
+        padding: 14px 28px;
+        border-radius: 8px;
+        font-weight: 700;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 15px;
+        transition: background 0.2s ease;
+    }
+
+    .btn-get-started:hover { background: #1d4ed8; }
+
+    .btn-learn-more {
+        color: #ffffff;
+        font-weight: 600;
+        text-decoration: none;
+        font-size: 15px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    /* Right Grid: 2x2 Feature Layout */
+    .hero-cards-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        max-width: 48%;
+        position: relative;
+        z-index: 2;
+    }
+
+    .feature-card {
+        background: rgba(13, 16, 33, 0.45);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(16px);
+        padding: 24px;
+        border-radius: 12px;
+        position: relative;
+    }
+
+    .card-header-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .card-header-row h3 {
+        margin: 0;
+        font-size: 17px;
+        font-weight: 700;
+        color: #ffffff;
+    }
+
+    .card-icon { color: #2563eb; font-size: 18px; }
+    .feature-card p { margin: 0; color: #64748b; font-size: 13px; line-height: 1.5; }
+
+    /* Corner Dynamic Stickers Engine */
+    .cloud-sticker {
+        position: absolute;
+        width: 38px;
+        height: auto;
+        pointer-events: none;
+        z-index: 10;
+        filter: drop-shadow(0 4px 8px rgba(56, 189, 248, 0.2));
+    }
+
+    .anim-float-v1 { animation: stickerFloat1 3.8s ease-in-out infinite; }
+    .anim-float-v2 { animation: stickerFloat2 3.2s ease-in-out infinite; }
+
+    .stk-btn-tl { top: -20px; left: -20px; width: 32px; }
+    .stk-btn-br { bottom: -20px; right: -5px; width: 32px; }
+    .stk-tl { top: -16px; left: -16px; }
+    .stk-br { bottom: -16px; right: -16px; }
+
+    @keyframes stickerFloat1 {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-5px) rotate(-2deg); }
+    }
+    @keyframes stickerFloat2 {
+        0%, 100% { transform: translateY(0px) scale(1); }
+        50% { transform: translateY(-4px) scale(1.04) rotate(3deg); }
+    }
+
+    /* ----------------------------------------------------
+       INFINITE LOOPING LOGO SLIDER SYSTEM (As seen in video)
+       ---------------------------------------------------- */
+    .partner-slider-section {
+        width: 100%;
+        background-color: #070913;
+        padding: 30px 0 60px 0;
+        overflow: hidden; /* Extra layout blocks hide */
+        position: relative;
+    }
+
+    /* Fade track masks for premium gradient edges */
+    .partner-slider-section::before,
+    .partner-slider-section::after {
+        content: "";
+        height: 100%;
+        width: 150px;
+        position: absolute;
+        top: 0;
+        z-index: 3;
+        pointer-events: none;
+    }
+    .partner-slider-section::before { left: 0; background: linear-gradient(to right, #070913, transparent); }
+    .partner-slider-section::after { right: 0; background: linear-gradient(to left, #070913, transparent); }
+
+    .slider-infinite-track {
+        display: flex;
+        width: calc(250px * 14); /* Dynamic math sizing for seamless loop node */
+        animation: scrollInfiniteTrack 25s linear infinite;
+    }
+
+    .slider-item-logo {
+        width: 250px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .slider-item-logo img {
+        height: 32px; /* Perfect scale height for standard brand vectors */
+        width: auto;
+        opacity: 0.35;
+        transition: opacity 0.3s ease;
+        filter: grayscale(100%) brightness(200%);
+    }
+
+    .slider-item-logo img:hover {
+        opacity: 0.8;
+        filter: grayscale(0%) brightness(100%);
+    }
+
+    /* Keyframes calculation for non-stop translation ticker */
+    @keyframes scrollInfiniteTrack {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(calc(-250px * 7)); } /* Exactly half track shift */
+    }
+
+    /* Responsive Grid Engine Scaling */
+    @media (max-width: 1024px) {
+        .hero-premium-container { flex-direction: column; text-align: center; padding-top: 40px; }
+        .hero-left-content, .hero-cards-grid { max-width: 100%; }
+        .hero-btn-group { justify-content: center; }
+        .slider-item-logo { width: 180px; }
+        @keyframes scrollInfiniteTrack {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-180px * 7)); }
+        }
+    }
+    @media (max-width: 640px) {
+        .hero-cards-grid { grid-template-columns: 1fr; }
+        .hero-left-content h1 { font-size: 38px !important; }
+    }
+</style>
+
+<!-- HERO COMPONENT DOM MAP -->
+<div class="hero-premium-container">
+    
+    <!-- LEFT PANEL: CONTENT & INTERACTIVE BUTTONS -->
+    <div class="hero-left-content">
+        <h1>Host your own <br><span>Minecraft Servers</span></h1>
+        <p>High-performance hosting powered by Gen4 NVMe storage, high-frequency CPUs, and enterprise-grade WarShield DDoS protection.</p>
+        
+        <div class="hero-btn-group">
+            <div class="get-started-wrapper">
+                <!-- Red Mark Cloud Left -->
+                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3hsYjkxc2QweGRzNnlydWpmZmJvczdyeTBqMHNkNWVjdTNucXFmMyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/V4ErRLRQG2lfKOjIht/giphy.gif" class="cloud-sticker stk-btn-tl anim-float-v1" alt="cloud">
+                
+                <a href="#" class="btn-get-started">Get started &rarr;</a>
+                
+                <!-- Red Mark Cloud Right -->
+                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3hsYjkxc2QweGRzNnlydWpmZmJvczdyeTBqMHNkNWVjdTNucXFmMyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/0NjFWM1boB1gX6D2S0/giphy.gif" class="cloud-sticker stk-btn-br anim-float-v2" alt="cloud">
+            </div>
+            <a href="#" class="btn-learn-more">Learn More &rarr;</a>
+        </div>
+    </div>
+
+    <!-- RIGHT PANEL: 2x2 FEATURE CARDS MATRIX -->
+    <div class="hero-cards-grid">
+        
+        <!-- CARD 1 -->
+        <div class="feature-card">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3hsYjkxc2QweGRzNnlydWpmZmJvczdyeTBqMHNkNWVjdTNucXFmMyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/V4ErRLRQG2lfKOjIht/giphy.gif" class="cloud-sticker stk-tl anim-float-v1" alt="cloud">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3hsYjkxc2QweGRzNnlydWpmZmJvczdyeTBqMHNkNWVjdTNucXFmMyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/0NjFWM1boB1gX6D2S0/giphy.gif" class="cloud-sticker stk-br anim-float-v2" alt="cloud">
+            <div class="card-header-row">
+                <h3>Instant Setup</h3>
+                <span class="card-icon">⚡</span>
+            </div>
+            <p>Get your server running in under 60 seconds automatically.</p>
+        </div>
+
+        <!-- CARD 2 -->
+        <div class="feature-card">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3hsYjkxc2QweGRzNnlydWpmZmJvczdyeTBqMHNkNWVjdTNucXFmMyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/V4ErRLRQG2lfKOjIht/giphy.gif" class="cloud-sticker stk-tl anim-float-v2" alt="cloud">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3hsYjkxc2QweGRzNnlydWpmZmJvczdyeTBqMHNkNWVjdTNucXFmMyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/0NjFWM1boB1gX6D2S0/giphy.gif" class="cloud-sticker stk-br anim-float-v1" alt="cloud">
+            <div class="card-header-row">
+                <h3>DDoS Protection</h3>
+                <span class="card-icon">🛡️</span>
+            </div>
+            <p>WarShield Protection Enterprise shield active.</p>
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="feature-card">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3hsYjkxc2QweGRzNnlydWpmZmJvczdyeTBqMHNkNWVjdTNucXFmMyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/V4ErRLRQG2lfKOjIht/giphy.gif" class="cloud-sticker stk-tl anim-float-v1" alt="cloud">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3hsYjkxc2QweGRzNnlydWpmZmJvczdyeTBqMHNkNWVjdTNucXFmMyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/0NjFWM1boB1gX6D2S0/giphy.gif" class="cloud-sticker stk-br anim-float-v2" alt="cloud">
+            <div class="card-header-row">
+                <h3>99.9% Uptime</h3>
+                <span class="card-icon">📈</span>
+            </div>
+            <p>Reliable hosting setup with hardware availability.</p>
+        </div>
+
+        <!-- CARD 4 -->
+        <div class="feature-card">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3hsYjkxc2QweGRzNnlydWpmZmJvczdyeTBqMHNkNWVjdTNucXFmMyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/V4ErRLRQG2lfKOjIht/giphy.gif" class="cloud-sticker stk-tl anim-float-v2" alt="cloud">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3hsYjkxc2QweGRzNnlydWpmZmJvczdyeTBqMHNkNWVjdTNucXFmMyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/0NjFWM1boB1gX6D2S0/giphy.gif" class="cloud-sticker stk-br anim-float-v1" alt="cloud">
+            <div class="card-header-row">
+                <h3>24/7 Support</h3>
+                <span class="card-icon">🎧</span>
+            </div>
+            <p>Expert help team whenever you need it around the clock.</p>
+        </div>
+
+    </div>
+</div>
+
+<!-- INFINITE SLIDER COMPONENT (Exactly as running in your video) -->
+<div class="partner-slider-section">
+    <div class="slider-infinite-track">
+        
+        <!-- Track Set 1 -->
+        <div class="slider-item-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Brand Logo"></div>
+        <div class="slider-item-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Brand Logo"></div>
+        <div class="slider-item-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Intel-logo.svg" alt="Intel"></div>
+        <div class="slider-item-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Meta-Logo.svg" alt="Brand Logo"></div>
+        <div class="slider-item-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Advanced_Micro_Devices_Logo.svg" alt="AMD"></div>
+        <div class="slider-item-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e9/Notion-logo.svg" alt="Brand Logo"></div>
+        <div class="slider-item-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/0/01/Linux_Logo.glassy.svg" alt="Brand Logo"></div>
+
+        <!-- Track Set 2 (Exact duplication to achieve unnoticeable infinite loop transition) -->
+        <div class="slider-item-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Brand Logo"></div>
+        <div class="slider-item-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Brand Logo"></div>
+        <div class="slider-item-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Intel-logo.svg" alt="Intel"></div>
+        <div class="slider-item-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Meta-Logo.svg" alt="Brand Logo"></div>
+        <div class="slider-item-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Advanced_Micro_Devices_Logo.svg" alt="AMD"></div>
+        <div class="slider-item-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e9/Notion-logo.svg" alt="Brand Logo"></div>
+        <div class="slider-item-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/0/01/Linux_Logo.glassy.svg" alt="Brand Logo"></div>
+
+    </div>
+</div>
 </script>
 </body>
 </html>
