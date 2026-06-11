@@ -550,7 +550,8 @@
 
     <!-- -------------------------------- HERO SECTION -------------------------------- -->
     <section class="hero-container">
-        <div class="hero-left">
+        <div class="hero-left"
+            <h1>Host your own<br><span id="dynamic-game" class="dynamic-txt">CS:GO Servers</span></h1>>
             <p>Experience lightning-fast performance, unbeatable reliability, and 24/7 support for all your favorite multiplayer games.</p>
             
             <div class="hero-btns">
@@ -722,19 +723,6 @@
     </footer>
 
     <!-- Text Switcher Animation Script for Hero Section Text Changer -->
-    <script>
-        const games = [""];
-        let currentIndex = 0;
-        const dynamicTextEl = document.getElementById("dynamic-game");
-
-        setInterval(() => {
-            currentIndex = (currentIndex + 1) % games.length;
-            dynamicTextEl.style.opacity = 0;
-            setTimeout(() => {
-                dynamicTextEl.textContent = games[currentIndex];
-                dynamicTextEl.style.opacity = 1;
-            }, 300);
-        }, 3000);
     </script>
     <!-- =========================================================================
      PASTE THIS CODE JUST BEFORE YOUR CLOSING </body> TAG (BELOW OLD SCRIPT)
