@@ -2119,6 +2119,181 @@
         z-index: -1 !important;
     }
 </style>
-    </script>
+
+        <!-- =========================================================================
+     DYNAMIC CENTERED HEADERS WITH STICKERS & FLOATING ANIMATIONS
+     ========================================================================= -->
+<style>
+    /* Global classes to force apply center alignment on elements */
+    .features-section-fixed, 
+    .pricing-section,
+    #advanced-features,
+    #pricing {
+        text-align: center !important;
+    }
+
+    /* Target Headers Wrapper Block to align items correctly */
+    .features-section-fixed .tagline,
+    .pricing-section .tagline,
+    .features-section-fixed .section-title,
+    .pricing-section .section-title,
+    .pricing-section h2,
+    .features-section-fixed h2 {
+        text-align: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        display: block !important;
+        justify-content: center !important;
+    }
+
+    /* Container to make headings hold the stickers safely without clipping */
+    .premium-header-container {
+        position: relative;
+        display: inline-block;
+        margin: 0 auto 50px auto !important;
+        padding: 0 40px;
+        text-align: center;
+    }
+
+    /* Dynamic Taglines customization */
+    .premium-header-container .premium-tagline {
+        color: #2563eb !important;
+        font-size: 14px !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 2px !important;
+        margin-bottom: 12px !important;
+        display: block !important;
+    }
+
+    /* Heading Fonts Alignment */
+    .premium-header-container .premium-title {
+        font-size: 42px !important;
+        font-weight: 800 !important;
+        color: #ffffff !important;
+        margin: 0 !important;
+        line-height: 1.2 !important;
+    }
+
+    .premium-header-container .premium-title span {
+        color: #38bdf8 !important;
+    }
+
+    /* ==========================================
+       ANIMATED STICKERS POSITIONING CONFIG 
+       ========================================== */
+    
+    /* Left Sticker Side: Cloud Asset */
+    .sticker-cloud-left {
+        position: absolute;
+        left: -85px;
+        bottom: -5px;
+        width: 75px;
+        height: auto;
+        pointer-events: none;
+        z-index: 5;
+        animation: premiumCloudFloat 3.5s ease-in-out infinite;
+        filter: drop-shadow(0 5px 15px rgba(56, 189, 248, 0.25));
+    }
+
+    /* Right Sticker Side: Show Star Asset */
+    .sticker-show-right {
+        position: absolute;
+        right: -85px;
+        top: -10px;
+        width: 70px;
+        height: auto;
+        pointer-events: none;
+        z-index: 5;
+        animation: premiumStarFloat 4s ease-in-out infinite;
+        filter: drop-shadow(0 5px 15px rgba(37, 99, 235, 0.25));
+    }
+
+    /* ==========================================
+       SMOOTH KINETIC ANIMATIONS KEYFRAMES
+       ========================================== */
+    @keyframes premiumCloudFloat {
+        0% { transform: translateY(0px) scale(1); }
+        50% { transform: translateY(-10px) scale(1.04); }
+        100% { transform: translateY(0px) scale(1); }
+    }
+
+    @keyframes premiumStarFloat {
+        0% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-12px) rotate(8deg); }
+        100% { transform: translateY(0px) rotate(0deg); }
+    }
+
+    /* Responsive scaling for smaller screens */
+    @media (max-width: 768px) {
+        .premium-header-container {
+            padding: 0 15px;
+        }
+        .premium-header-container .premium-title {
+            font-size: 32px !important;
+        }
+        .sticker-cloud-left, .sticker-show-right {
+            width: 45px;
+        }
+        .sticker-cloud-left { left: -35px; }
+        .sticker-show-right { right: -35px; }
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // 1. Fixing the Advanced Features Header Layout
+        const featuresTitle = document.querySelector(".features-section-fixed .section-title, .features-section-fixed h2");
+        const featuresTagline = document.querySelector(".features-section-fixed .tagline, .features-section-fixed span");
+
+        if(featuresTitle) {
+            // Create container element
+            const wrapper = document.createElement('div');
+            wrapper.className = 'premium-header-container';
+            
+            // Re-organize old content into our new layout structure
+            featuresTitle.parentNode.insertBefore(wrapper, featuresTitle);
+            
+            if(featuresTagline) {
+                featuresTagline.className = 'premium-tagline';
+                wrapper.appendChild(featuresTagline);
+            }
+            
+            featuresTitle.className = 'premium-title';
+            wrapper.appendChild(featuresTitle);
+            
+            // Injecting both animated cloud and show stickers directly inside container 
+            wrapper.insertAdjacentHTML('beforeend', `
+                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3hsYjkxc2QweGRzNnlydWpmZmJvczdyeTBqMHNkNWVjdTNucXFmMyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/V4ErRLRQG2lfKOjIht/giphy.gif" class="sticker-cloud-left" alt="Cloud Asset">
+                <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExMXVjMWptYmh5bm1xbmpuZGs1YmVubjFncXpvaDlzMjJrZDc1aW0ydCZlcD12MV9internalF9naWZfYnlfaWQmY3Q9cw/H1YGuEsxFy10JPPdah/giphy.gif" class="sticker-show-right" alt="Star Asset">
+            `);
+        }
+
+        // 2. Fixing the CoreMMC Hosting Plans Header Layout
+        const pricingTitle = document.querySelector(".pricing-section .section-title, .pricing-section h2, .pricing-section h1");
+        const pricingTagline = document.querySelector(".pricing-section .tagline, .pricing-section span");
+
+        if(pricingTitle) {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'premium-header-container';
+            
+            pricingTitle.parentNode.insertBefore(wrapper, pricingTitle);
+            
+            if(pricingTagline) {
+                pricingTagline.className = 'premium-tagline';
+                wrapper.appendChild(pricingTagline);
+            }
+            
+            pricingTitle.className = 'premium-title';
+            wrapper.appendChild(pricingTitle);
+            
+            // Injecting both custom animated stickers into pricing segment as well
+            wrapper.insertAdjacentHTML('beforeend', `
+                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3hsYjkxc2QweGRzNnlydWpmZmJvczdyeTBqMHNkNWVjdTNucXFmMyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/0NjFWM1boB1gX6D2S0/giphy.gif" class="sticker-cloud-left" alt="Cloud Element 2">
+                <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExMXVjMWptYmh5bm1xbmpuZGs1YmVubjFncXpvaDlzMjJrZDc1aW0ydCZlcD12MV9internalF9naWZfYnlfaWQmY3Q9cw/H1YGuEsxFy10JPPdah/giphy.gif" class="sticker-show-right" alt="Star Element 2">
+            `);
+        }
+    });
+</script>
 </body>
 </html>
