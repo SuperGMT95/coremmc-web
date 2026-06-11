@@ -902,5 +902,37 @@
         }
     })();
 </script>
+    /* =========================================================================
+   TEXT SIZE OVERRIDE CODE (PASTE THIS JUST BEFORE YOUR CLOSING </style> TAG)
+   ========================================================================= */
+
+/* 1. Base Heading ka size bada karne ke liye */
+.hero-left h1 {
+    font-size: 76px !important; /* Size badha kar 76px kar diya */
+    line-height: 1.15 !important;
+}
+
+/* 2. Badalne wale dynamic text ka size match karne ke liye */
+.dynamic-txt {
+    font-size: 76px !important; /* Dono text ka size ekdum barabar block ho jayega */
+}
+
+/* 3. Layout structural wrapper - taaki bada text niche se cut na ho */
+.dynamic-wrapper {
+    height: 100px !important; /* Isse bada text smoothly slide karega bina kate */
+    display: block !important;
+    overflow: hidden !important;
+}
+
+/* Responsive fix: Chhoti screens (Mobile) par text automatic sahi adjustment lele */
+@media (max-width: 768px) {
+    .hero-left h1, .dynamic-txt {
+        font-size: 42px !important;
+    }
+    .dynamic-wrapper {
+        height: 60px !important;
+    }
+}
+</script>
 </body>
 </html>
